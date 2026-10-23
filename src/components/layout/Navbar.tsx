@@ -138,6 +138,9 @@ export function Navbar() {
   const location = useLocation();
   const esInicio = location.pathname === '/';
 
+  const esActivo = (destino: string, id: string) =>
+    destino === location.pathname || (esInicio && id === 'inicio');
+
   useEffect(() => {
     setMenuAbierto(false);
   }, [location.pathname, location.hash]);
@@ -173,7 +176,7 @@ export function Navbar() {
         <nav className={styles.nav} aria-label={accesibilidad.navegacionPrincipal}>
           {navegacion.map((enlace) => {
             const Icono = iconosNavegacion[enlace.icono];
-            const activo = esInicio && enlace.id === 'inicio';
+            const activo = esActivo(enlace.destino, enlace.id);
             return (
               <Link
                 key={enlace.id}
@@ -215,7 +218,7 @@ export function Navbar() {
         <nav aria-label={accesibilidad.navegacionMovil}>
           {navegacion.map((enlace) => {
             const Icono = iconosNavegacion[enlace.icono];
-            const activo = esInicio && enlace.id === 'inicio';
+            const activo = esActivo(enlace.destino, enlace.id);
             return (
               <Link
                 key={enlace.id}

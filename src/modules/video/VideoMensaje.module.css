@@ -247,10 +247,13 @@
 }
 
 .manuscrita {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 6px;
   color: var(--color-forest-700);
   font-size: clamp(1rem, 1.18vw, 1.3rem);
   line-height: 0.9;
-  transform: rotate(-4deg);
+  transform: rotate(-1.5deg);
   transform-origin: left center;
 }
 

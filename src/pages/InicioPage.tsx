@@ -3,7 +3,7 @@ import { Hero } from '../modules/hero/Hero';
 import { Estadisticas } from '../modules/estadisticas/Estadisticas';
 import { TiposMaltrato } from '../modules/tipos/TiposMaltrato';
 import { FraseConejo } from '../modules/frase/FraseConejo';
-import { VideoMensaje } from '../modules/video/VideoMensaje';
+import { HistoriaTarjeta } from '../modules/historia/HistoriaTarjeta';
 import { JuegoQuiz } from '../modules/juego/JuegoQuiz';
 import { Galeria } from '../modules/galeria/Galeria';
 import { AyudaRecursos } from '../modules/ayuda/AyudaRecursos';
@@ -20,7 +20,7 @@ export function InicioPage() {
       </div>
 
       <div className={styles.inferior}>
-        <VideoMensaje />
+        <HistoriaTarjeta />
         <JuegoQuiz rabbitMode={configuracion.modoConejo} />
         <Galeria />
         <AyudaRecursos />

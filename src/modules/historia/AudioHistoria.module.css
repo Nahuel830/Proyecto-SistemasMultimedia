@@ -1,0 +1,15 @@
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.error {
+  flex: 1 1 100%;
+  color: var(--color-danger);
+  font-size: 0.68rem;
+  line-height: 1.35;
+}

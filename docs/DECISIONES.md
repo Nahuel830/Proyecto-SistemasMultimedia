@@ -8,14 +8,22 @@
 - `npm run lint` no reporta errores; solo avisos menores (patrones de efectos en React, exportaciones auxiliares y el Draco vendorizado de `public/draco/`).
 - El build avisa de chunks grandes (>500 kB) por Three.js y Recharts. `ModelViewer` ya se carga con `lazy`; si el peso importa, dividir el visor 3D y los gráficos en chunks separados.
 
+## Verificación del módulo Mi historia (2026-10-23)
+
+- `npm run build` pasa sin errores de TypeScript.
+- `/mi-historia` responde 200 y renderiza la página completa.
+- Accesos a `/mi-historia` verificados desde menú de escritorio y móvil, botón del hero, accesos rápidos, tarjeta del dashboard, buscador y footer.
+- Capturas revisadas en escritorio (1600 px), tablet (900 px) y móvil (492 px, ancho mínimo de Edge headless).
+- El video se trasladó sin duplicar código y el dashboard mantiene la rejilla sin huecos.
+
 ## Arquitectura
 
 - **Vite + React 18 + TypeScript estricto**. React Router 6 separa el layout de las páginas y deja preparadas las rutas futuras.
 - **Un módulo por sección** en `src/modules/`, con estilos CSS Modules co-ubicados. Los tokens globales viven en `src/styles/tokens.css` y `src/styles/global.css`.
 - **Datos tipados** en `src/data/`. Las secciones no contienen cifras, preguntas, recursos ni textos de interfaz hardcodeados. Los textos generales están en `src/data/contenido.ts`.
 - **Primitivas reutilizables**: `Button`, `IconButton`, `Card`, `Spinner`, `Modal`, `EmptyState` y `PanelHeader`.
-- **Rutas placeholder reales** para Mi historia, Estadísticas, Tipos de maltrato, Ayuda, Galería, Juego y Recursos. No se implementaron sus páginas completas todavía.
-- La navegación superior enlaza a las secciones del dashboard mediante hashes y scroll suave. Las rutas directas quedan disponibles para la siguiente fase.
+- **Mi historia ya tiene página propia** (`/mi-historia`). Estadísticas, Tipos de maltrato, Ayuda, Galería, Juego y Recursos siguen como rutas placeholder.
+- La navegación superior enlaza al dashboard y a `/mi-historia`; el resto de secciones mantiene hashes y scroll suave. Las rutas directas de las secciones pendientes quedan disponibles para la siguiente fase.
 
 ## Dashboard
 
@@ -23,6 +31,16 @@
 - Tableta: 2 columnas. Móvil: 1 columna, menú hamburguesa y buscador compacto.
 - La dona usa **Recharts** y centro con huella. Las barras usan Recharts con una forma personalizada que coloca imagen, porcentaje y barra.
 - Los datos de ejemplo suman 100% y están centralizados en `src/data/estadisticas.ts`.
+
+## Mi historia
+
+- `MiHistoriaPage` (`/mi-historia`) es la primera página completa después del dashboard. Orden: cabecera, video grande + texto, relato en 5 capítulos, espacio del conejo 3D y CTA a `/ayuda`.
+- El video se movió desde Inicio sin duplicar código: `VideoMensaje` sigue en `src/modules/video/` y ahora se usa en la página. En Inicio se reemplazó por `HistoriaTarjeta`, una tarjeta compacta con póster, play decorativo, una línea de texto y CTA.
+- El audio del hero se movió a `AudioHistoria`, dentro de la página, para que el botón del hero navegue a `/mi-historia`.
+- Todos los accesos a Mi historia apuntan a `/mi-historia`: menú de escritorio y móvil, botón del hero, accesos rápidos, tarjeta del dashboard, buscador y footer.
+- Los textos de la historia viven tipados en `src/data/historia.ts` (`capitulosHistoria`, `historiaPagina`, `historiaTarjeta`, `audioHistoria`, `conejoHistoria`, `cierreHistoria`). No hay textos hardcodeados en el JSX.
+- Las apariciones usan `Reveal` con `IntersectionObserver`, sin librerías nuevas. Con `prefers-reduced-motion` el contenido se muestra sin animación.
+- El espacio del conejo usa `ModelViewer` con `mode={configuracion.modoConejo}`; con `image` muestra el fallback y queda listo para `3d` cuando exista `conejo.glb`.
 
 ## Conejo y 3D
 
@@ -34,8 +52,8 @@
 
 ## Interacciones
 
-- **Audio del hero**: usa `/audio/mensaje-conejo.wav`, generado como voz de demostración con la voz española de Windows. Reemplazarlo por una grabación real.
-- **Video**: reproductor HTML5 personalizado con controles de reproducción, progreso, volumen, ajustes y pantalla completa. Si no existe `/video/mensaje-conejo.mp4`, funciona en modo demostración con el póster del conejo. Reemplazar por el video real.
+- **Audio de Mi historia**: usa `/audio/mensaje-conejo.wav`, generado como voz de demostración con la voz española de Windows. El botón del hero solo navega a `/mi-historia`; la reproducción vive en esa página. Reemplazar por una grabación real.
+- **Video**: reproductor HTML5 personalizado con controles de reproducción, progreso, volumen, ajustes y pantalla completa. Vive en `/mi-historia`; en Inicio queda la tarjeta compacta “Mi historia”. Si no existe `/video/mensaje-conejo.mp4`, funciona en modo demostración con el póster del conejo. Reemplazar por el video real.
 - **Quiz**: 5 preguntas funcionales. El estado inicial replica la referencia: pregunta 2 de 5, opción B correcta, 1/5 puntos y feedback del conejo. El botón de reinicio permite empezar desde la pregunta 1.
 - **Galería**: grid 3x3 con hover, lightbox accesible, navegación con flechas y teclado.
 - **Buscador**: índice local de secciones con resultados navegables. No consulta un backend.
@@ -93,20 +111,22 @@
 | Módulo | Estado | Detalle |
 | --- | --- | --- |
 | Layout y navegación | Completo | `RootLayout`, `Navbar` (menú móvil, buscador local, hashes) y `Footer`. |
-| Hero / Inicio | Completo | Portada, audio demo, accesos rápidos y conmutador de conejo. |
+| Hero / Inicio | Completo | Portada, accesos rápidos y tarjeta compacta de Mi historia. |
+| Mi historia | Completo (textos demo) | Página propia con video, 5 capítulos, espacio 3D y CTA. |
 | Conejo 3D | Implementado con fallback | `ModelViewer` + `RabbitVisual`; falta el GLB para activarlo. |
 | Estadísticas | Completo (datos demo) | Dona y barras Recharts; faltan fuentes reales. |
 | Tipos de maltrato | Completo (contenido demo) | 5 fichas resumidas con imagen provisional. |
 | Frase del conejo | Completo | Cita ilustrada. |
-| Video | Completo en modo demo | Reproductor propio; falta el MP4 real. |
+| Video | Completo en modo demo | Vive en `/mi-historia`; falta el MP4 real. |
 | Quiz | Completo | 5 preguntas, feedback y puntaje. |
 | Galería | Completo | Grid + lightbox accesible. |
 | Ayuda y redes | Completo (enlaces demo) | URLs genéricas a sustituir. |
-| Páginas independientes | Placeholder | Las 7 rutas muestran `PagePlaceholder`; el contenido vive en Inicio. |
+| Páginas independientes | Placeholder (6) | Estadísticas, Tipos, Ayuda, Galería, Juego y Recursos; Mi historia ya es página completa. |
 
 ## Pendiente para las siguientes fases
 
-- Páginas completas de cada módulo.
+- Páginas completas de las secciones restantes (Estadísticas, Tipos, Ayuda, Galería, Juego y Recursos).
+- Sustituir los textos demo de Mi historia por el relato definitivo.
 - Buscador con contenido real o backend.
 - Reproductor de audio con transcripción.
 - Galería ampliada con filtros y relatos.

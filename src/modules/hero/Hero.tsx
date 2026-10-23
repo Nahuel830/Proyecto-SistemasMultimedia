@@ -1,10 +1,7 @@
-import { Pause, Volume2 } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { Volume2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { RabbitVisual } from '../../components/RabbitVisual';
-import { Button } from '../../components/primitives/Button';
 import { configuracion, heroe } from '../../data/contenido';
-import { imagenes } from '../../data/imagenes';
 import type { ModoConejo } from '../../data/types';
 import { iconosNavegacion } from '../../components/iconos';
 import styles from './Hero.module.css';
@@ -14,50 +11,6 @@ interface HeroProps {
 }
 
 export function Hero({ rabbitMode = configuracion.modoConejo }: HeroProps) {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [reproduciendo, setReproduciendo] = useState(false);
-  const [errorAudio, setErrorAudio] = useState(false);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) {
-      return;
-    }
-
-    const alTerminar = () => setReproduciendo(false);
-    const alPausar = () => setReproduciendo(false);
-    const alReproducir = () => setReproduciendo(true);
-
-    audio.addEventListener('ended', alTerminar);
-    audio.addEventListener('pause', alPausar);
-    audio.addEventListener('play', alReproducir);
-
-    return () => {
-      audio.removeEventListener('ended', alTerminar);
-      audio.removeEventListener('pause', alPausar);
-      audio.removeEventListener('play', alReproducir);
-    };
-  }, []);
-
-  const alternarAudio = async () => {
-    const audio = audioRef.current;
-    if (!audio) {
-      return;
-    }
-
-    if (reproduciendo) {
-      audio.pause();
-      return;
-    }
-
-    try {
-      await audio.play();
-      setErrorAudio(false);
-    } catch {
-      setErrorAudio(true);
-    }
-  };
-
   return (
     <section
       id={heroe.id}
@@ -87,24 +40,14 @@ export function Hero({ rabbitMode = configuracion.modoConejo }: HeroProps) {
           “{heroe.cita}”
         </blockquote>
 
-        <Button
-          variant="outline"
-          size="sm"
-          className={styles.botonAudio}
-          icon={reproduciendo ? <Pause size={16} /> : <Volume2 size={16} />}
-          onClick={alternarAudio}
-          aria-label={heroe.ariaAudio}
-          aria-pressed={reproduciendo}
+        <Link
+          to="/mi-historia"
+          className={styles.botonHistoria}
+          aria-label={heroe.ariaBotonHistoria}
         >
-          {reproduciendo ? heroe.botonAudioActivo : heroe.botonAudio}
-        </Button>
-
-        <audio ref={audioRef} src={imagenes.audio} preload="metadata" />
-        {errorAudio && (
-          <p className={styles.errorAudio} role="status">
-            {heroe.ariaErrorAudio}
-          </p>
-        )}
+          <Volume2 size={16} aria-hidden="true" />
+          <span>{heroe.botonHistoria}</span>
+        </Link>
       </div>
 
       <nav className={styles.accesos} aria-label={heroe.ariaAccesos}>

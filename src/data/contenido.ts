@@ -18,7 +18,7 @@ export const navegacion: readonly EnlaceNavegacion[] = [
   {
     id: 'historia',
     etiqueta: 'Mi historia',
-    destino: '/#mi-historia',
+    destino: '/mi-historia',
     icono: 'historia',
   },
   {
@@ -80,7 +80,7 @@ export const indiceBusqueda: readonly IndiceBusqueda[] = [
   {
     etiqueta: 'Mi historia',
     descripcion: 'La voz del conejo',
-    destino: '/#mi-historia',
+    destino: '/mi-historia',
     claves: ['historia', 'conejo', 'audio', 'voz', 'escucha'],
   },
   {
@@ -127,17 +127,16 @@ export const heroe = {
   titulo: marca.nombrePartes,
   subtitulo: 'Una voz contra el maltrato animal',
   cita: 'No puedo pedirte ayuda con palabras, pero tú puedes ser mi voz.',
-  botonAudio: 'Escucha mi historia',
-  botonAudioActivo: 'Pausar mi historia',
-  ariaAudio: 'Reproducir o pausar el mensaje de audio del conejo',
+  botonHistoria: 'Escucha mi historia',
+  ariaBotonHistoria:
+    'Ir a la página Mi historia para escuchar el mensaje del conejo',
   ariaImagen: 'Conejo blanco con camisa y chaleco de pie en un bosque',
   ariaAccesos: 'Accesos rápidos del dashboard',
-  ariaErrorAudio: 'No se pudo reproducir el audio. Revisa el archivo en public/audio.',
   accesos: [
     {
       id: 'acceso-historia',
       etiqueta: 'Mi historia',
-      destino: '/#mi-historia',
+      destino: '/mi-historia',
       icono: 'historia',
     },
     {

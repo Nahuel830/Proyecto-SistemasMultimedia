@@ -104,3 +104,9 @@ export interface EnlaceFooter {
   readonly etiqueta: string;
   readonly destino: string;
 }
+
+export interface CapituloHistoria {
+  readonly id: string;
+  readonly titulo: string;
+  readonly parrafos: readonly string[];
+}

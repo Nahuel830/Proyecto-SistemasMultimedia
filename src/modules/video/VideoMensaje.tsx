@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import {
   CirclePlay,
   Maximize,
@@ -14,7 +15,11 @@ import { imagenes } from '../../data/imagenes';
 import { formatearTiempo } from '../../utils/formato';
 import styles from './VideoMensaje.module.css';
 
-export function VideoMensaje() {
+interface VideoMensajeProps {
+  readonly className?: string;
+}
+
+export function VideoMensaje({ className }: VideoMensajeProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const contenedorRef = useRef<HTMLDivElement>(null);
   const [reproduciendo, setReproduciendo] = useState(false);
@@ -131,7 +136,7 @@ export function VideoMensaje() {
 
   return (
     <section
-      className={`${styles.panel} animar-entrada`}
+      className={clsx(styles.panel, 'animar-entrada', className)}
       aria-labelledby="titulo-video"
     >
       <PanelHeader

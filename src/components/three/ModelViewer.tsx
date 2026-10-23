@@ -4,6 +4,7 @@ import { Component, Suspense, useEffect, useMemo, useRef, useState } from 'react
 import type { ErrorInfo, ReactNode } from 'react';
 import * as THREE from 'three';
 import { Spinner } from '../primitives/Spinner';
+import type { ModoConejo } from '../../data/types';
 import { usePrefersReducedMotion } from '../../utils/usePrefersReducedMotion';
 import { CanvasFallback } from './CanvasFallback';
 import { SceneLights } from './SceneLights';
@@ -14,6 +15,7 @@ useGLTF.setDecoderPath('/draco/');
 interface ModelViewerProps {
   readonly src: string;
   readonly alt?: string;
+  readonly mode?: ModoConejo;
   readonly className?: string;
   readonly animation?: string;
   readonly autoRotate?: boolean;
@@ -135,6 +137,7 @@ function CargandoModelo() {
 export function ModelViewer({
   src,
   alt = 'Conejo de Huellas de Esperanza',
+  mode = '3d',
   className,
   animation,
   autoRotate = false,
@@ -149,6 +152,10 @@ export function ModelViewer({
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (mode === 'image') {
+      return;
+    }
+
     let cancelado = false;
     setEstado('comprobando');
 
@@ -169,9 +176,13 @@ export function ModelViewer({
     return () => {
       cancelado = true;
     };
-  }, [src]);
+  }, [src, mode]);
 
   useEffect(() => {
+    if (mode === 'image') {
+      return;
+    }
+
     const nodo = wrapRef.current;
     if (!nodo || typeof IntersectionObserver === 'undefined') {
       return;
@@ -186,15 +197,25 @@ export function ModelViewer({
 
     observer.observe(nodo);
     return () => observer.disconnect();
-  }, []);
+  }, [mode]);
 
   useEffect(() => {
-    if (estado === 'ausente') {
-      console.info(
-        `[ModelViewer] No se encontró "${src}". Se muestra la imagen de respaldo. Añade el .glb en /public/models/.`,
-      );
+    if (mode === 'image' || estado !== 'ausente') {
+      return;
     }
-  }, [estado, src]);
+
+    console.info(
+      `[ModelViewer] No se encontró "${src}". Se muestra la imagen de respaldo. Añade el .glb en /public/models/.`,
+    );
+  }, [estado, src, mode]);
+
+  if (mode === 'image') {
+    return (
+      <div ref={wrapRef} className={`${styles.wrap} ${className ?? ''}`}>
+        <CanvasFallback alt={alt} mostrarAviso={false} />
+      </div>
+    );
+  }
 
   if (estado === 'ausente') {
     return (

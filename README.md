@@ -1,6 +1,6 @@
 # Huellas de Esperanza
 
-Revista web interactiva contra el maltrato animal. El dashboard principal (**Inicio**) está completo; el resto de secciones existen como rutas placeholder a la espera de sus páginas definitivas.
+Revista web interactiva contra el maltrato animal. El dashboard principal (**Inicio**) y el módulo **Mi historia** (`/mi-historia`) están completos; el resto de secciones existen como rutas placeholder a la espera de sus páginas definitivas.
 
 ## Requisitos
 
@@ -31,6 +31,9 @@ Otros comandos:
 - `npm run build`: **OK**, sin errores de TypeScript (`tsc -b` + `vite build`).
 - `npm run dev`: responde **HTTP 200** en `http://127.0.0.1:5173/`.
 - Rutas verificadas con respuesta 200: `/`, `/mi-historia`, `/estadisticas`, `/tipos-de-maltrato`, `/ayuda`, `/galeria`, `/juego`, `/recursos`.
+- `/mi-historia`: página completa con video, relato en 5 capítulos, espacio reservado para el conejo 3D y CTA a `/ayuda`.
+- Accesos a `/mi-historia` verificados desde menú de escritorio y móvil, botón del hero, accesos rápidos, tarjeta del dashboard, buscador y footer.
+- Capturas revisadas en escritorio (1600 px), tablet (900 px) y móvil (492 px, ancho mínimo de Edge headless).
 - `npm run lint`: sin errores. Quedan avisos menores de React (`set-state-in-effect`, exportaciones auxiliares) y los avisos del Draco vendorizado.
 
 ## Estructura
@@ -44,9 +47,10 @@ src/
     three/         ModelViewer, SceneLights, CanvasFallback
     iconos.tsx     mapas de iconos
     RabbitVisual   conmutador imagen / 3D
-  data/            textos, rutas, estadísticas, tipos, galería, quiz y recursos tipados
+  data/            textos, rutas, historia, estadísticas, tipos, galería, quiz y recursos tipados
   modules/
-    hero/          portada, audio y accesos rápidos
+    hero/          portada y accesos rápidos
+    historia/      tarjeta compacta del dashboard + audio de la página
     estadisticas/  dona + barras (Recharts)
     tipos/         lista de tipos de maltrato
     frase/         cita ilustrada con el conejo
@@ -54,7 +58,7 @@ src/
     juego/         quiz de 5 preguntas
     galeria/       grid + lightbox
     ayuda/         recursos y redes sociales
-  pages/           InicioPage + 7 páginas placeholder
+  pages/           InicioPage + MiHistoriaPage + 6 páginas placeholder
   routing/         definición de rutas y router
   styles/          tokens y estilos globales
   utils/           formateadores y hook de movimiento reducido
@@ -76,16 +80,17 @@ docs/
 | Módulo | Estado | Notas |
 | --- | --- | --- |
 | Inicio / layout | Completo | Dashboard responsive (escritorio, tablet y móvil), navegación con scroll suave, menú móvil, buscador local y footer. |
-| Hero + audio | Completo con demo | Reproduce `/audio/mensaje-conejo.wav` (voz sintética provisional). Falta grabación real. |
+| Hero | Completo | Portada y accesos rápidos. El botón “Escucha mi historia” navega a `/mi-historia`. |
+| Mi historia | Completo (textos demo) | Página `/mi-historia` con video grande, relato en 5 capítulos, espacio reservado para el conejo 3D y CTA a `/ayuda`. Textos tipados en `src/data/historia.ts`. |
 | Conejo (imagen/3D) | Fallback listo | Por defecto usa imágenes recortadas. `ModelViewer` está implementado, pero no hay `conejo.glb`; muestra la imagen sin romper la página. |
 | Estadísticas | Completo | Dona y barras con Recharts; datos de demostración. Faltan fuentes y cifras reales. |
 | Tipos de maltrato | Completo | Lista de 5 tipos con imagen provisional; faltan textos y fotos definitivas. |
 | Frase del conejo | Completo | Cita ilustrada reutilizando `RabbitVisual`. |
-| Video | Modo demostración | Reproductor propio (play, progreso, volumen, ajustes y pantalla completa). Sin `/video/mensaje-conejo.mp4` funciona con póster. |
+| Video | Completo en modo demo | Vive en `/mi-historia`. Reproductor propio (play, progreso, volumen, ajustes y pantalla completa). Sin `/video/mensaje-conejo.mp4` funciona con póster. |
 | Juego / quiz | Completo | 5 preguntas funcionales, feedback, puntaje y reinicio. |
 | Galería | Completo | Grid 3x3, lightbox accesible, flechas, teclado y contador. |
 | Ayuda y recursos | Completo (enlaces demo) | Accesos a adopción/denuncia/organizaciones y redes genéricas. Faltan URLs reales. |
-| Mi historia, Estadísticas, Tipos, Ayuda, Galería, Juego y Recursos como páginas | Placeholder | Las rutas directas muestran `PagePlaceholder`. El contenido completo vive en el dashboard de Inicio. |
+| Estadísticas, Tipos, Ayuda, Galería, Juego y Recursos como páginas | Placeholder | Las rutas directas muestran `PagePlaceholder`. El contenido completo vive en el dashboard de Inicio. |
 
 ## Imágenes y modelo 3D
 

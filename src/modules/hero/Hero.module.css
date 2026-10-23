@@ -104,26 +104,32 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.botonAudio {
+.botonHistoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 34px;
   margin-left: 20px;
+  padding: 7px 14px;
+  border: 1px solid rgba(127, 217, 154, 0.55);
+  border-radius: var(--radius-pill);
   color: var(--color-cream-50);
   background: rgba(8, 37, 28, 0.64);
-  border-color: rgba(127, 217, 154, 0.55);
   box-shadow: var(--shadow-xs);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
   backdrop-filter: blur(6px);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
-.botonAudio:hover:not(:disabled) {
+.botonHistoria:hover {
+  transform: translateY(-1px);
   background: rgba(15, 61, 46, 0.92);
   border-color: var(--color-mint-400);
-}
-
-.errorAudio {
-  max-width: 28ch;
-  margin-top: 9px;
-  color: var(--color-mint-200);
-  font-size: 0.62rem;
-  line-height: 1.35;
 }
 
 .accesos {
@@ -255,7 +261,7 @@
     text-align: left;
   }
 
-  .botonAudio {
+  .botonHistoria {
     margin-left: 0;
   }
 
