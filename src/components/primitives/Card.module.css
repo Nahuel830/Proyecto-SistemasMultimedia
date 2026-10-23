@@ -1,0 +1,30 @@
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.padded {
+  padding: clamp(12px, 1.1vw, 18px);
+}
+
+.cream {
+  color: var(--color-ink);
+  background-color: var(--color-cream-100);
+  background-image:
+    var(--paper-fibers),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 42%);
+  border: 1px solid rgba(15, 61, 46, 0.14);
+  box-shadow: var(--shadow-sm);
+}
+
+.forest {
+  color: var(--color-cream-100);
+  background-color: var(--color-forest-900);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-md);
+}
+
+.plain {
+  background: transparent;
+}

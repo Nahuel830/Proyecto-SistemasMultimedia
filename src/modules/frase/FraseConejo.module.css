@@ -1,0 +1,113 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  height: 100%;
+  overflow: hidden;
+  color: var(--color-cream-50);
+  background: var(--color-forest-900);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  isolation: isolate;
+}
+
+.fondo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(0deg, rgba(8, 37, 28, 0.38), rgba(8, 37, 28, 0.12) 45%, rgba(8, 37, 28, 0.5)),
+    url('/images/bosque.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.9);
+}
+
+.panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(8, 37, 28, 0.15), rgba(8, 37, 28, 0.05) 45%, rgba(8, 37, 28, 0.65));
+}
+
+.cita {
+  position: relative;
+  z-index: 2;
+  margin: 18px 13px 0;
+  color: var(--color-mint-200);
+  font-size: clamp(1.3rem, 1.55vw, 1.75rem);
+  line-height: 0.98;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.rabbit {
+  position: absolute;
+  right: -22%;
+  bottom: 20px;
+  left: -22%;
+  z-index: 1;
+  height: 72%;
+}
+
+.sello {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 49px;
+  padding: 8px 12px;
+  color: var(--color-forest-950);
+  background: var(--color-mint-400);
+  border-radius: 36% 64% 40% 60% / 55% 42% 58% 45%;
+  box-shadow: 0 8px 18px rgba(8, 37, 28, 0.22);
+  font-family: var(--font-hand);
+  font-size: clamp(1rem, 1.2vw, 1.24rem);
+  font-weight: 700;
+  line-height: 0.95;
+  text-align: center;
+  transform: rotate(-1.5deg);
+}
+
+.sello svg {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1279px) {
+  .panel {
+    min-height: 380px;
+  }
+
+  .rabbit {
+    right: -10%;
+    left: -10%;
+    height: 66%;
+  }
+}
+
+@media (max-width: 760px) {
+  .panel {
+    min-height: 430px;
+  }
+
+  .cita {
+    max-width: 24ch;
+    margin-inline: auto;
+    font-size: 1.65rem;
+  }
+
+  .rabbit {
+    right: -18%;
+    left: -18%;
+    height: 60%;
+  }
+}

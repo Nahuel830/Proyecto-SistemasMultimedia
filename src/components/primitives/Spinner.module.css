@@ -1,0 +1,41 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+.dark {
+  color: var(--color-forest-800);
+}
+
+.light {
+  color: var(--color-mint-300);
+}
+
+.sm {
+  font-size: 0.72rem;
+}
+
+.sm .spinner {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}

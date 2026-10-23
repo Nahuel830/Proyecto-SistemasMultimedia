@@ -1,0 +1,72 @@
+:root {
+  /* Paleta */
+  --color-forest-950: #08251c;
+  --color-forest-900: #0f3d2e;
+  --color-forest-850: #104534;
+  --color-forest-800: #134e3a;
+  --color-forest-700: #1a6048;
+  --color-forest-600: #26755b;
+  --color-mint-400: #7fd99a;
+  --color-mint-300: #a4e8b8;
+  --color-mint-200: #d3f4dd;
+  --color-cream-50: #fbf8ef;
+  --color-cream-100: #f4efe0;
+  --color-cream-200: #ece4d1;
+  --color-cream-300: #dfd4bc;
+  --color-orange: #f28c28;
+  --color-purple: #7b3fa0;
+  --color-blue: #2f6db5;
+  --color-teal: #2e8b7a;
+  --color-gray: #7a7a7a;
+  --color-ink: #17352b;
+  --color-ink-soft: #50675e;
+  --color-ink-muted: #74877f;
+  --color-white: #ffffff;
+  --color-danger: #b53a3a;
+  --color-danger-soft: #f7dfdf;
+  --color-success: #1f6f4d;
+  --color-success-soft: #dff1e4;
+
+  /* Tipografía */
+  --font-ui: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Poppins', 'Inter', 'Segoe UI', sans-serif;
+  --font-display-condensed: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
+
+  /* Radios */
+  --radius-xs: 6px;
+  --radius-sm: 9px;
+  --radius-md: 13px;
+  --radius-lg: 17px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-xs: 0 1px 2px rgba(15, 61, 46, 0.08);
+  --shadow-sm: 0 4px 14px rgba(15, 61, 46, 0.09);
+  --shadow-md: 0 12px 30px rgba(15, 61, 46, 0.13);
+  --shadow-lg: 0 24px 60px rgba(8, 37, 28, 0.22);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  /* Layout */
+  --container-max: 1536px;
+  --container-pad: clamp(10px, 1.6vw, 24px);
+  --header-height: 76px;
+  --gap-grid: clamp(8px, 0.85vw, 14px);
+
+  /* Movimiento */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 160ms var(--ease-out);
+  --transition-base: 260ms var(--ease-out);
+  --transition-slow: 500ms var(--ease-out);
+
+  /* Texturas */
+  --paper-dots: radial-gradient(rgba(15, 61, 46, 0.045) 0.7px, transparent 0.7px);
+  --paper-fibers: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.16) 0,
+    rgba(255, 255, 255, 0.16) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+}
