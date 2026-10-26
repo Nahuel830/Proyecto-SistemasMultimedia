@@ -99,6 +99,7 @@ export interface TipoMaltrato {
   readonly baseLegal: string;
   readonly imagen: string;
   readonly alt: string;
+  readonly posicionImagen?: string;
   readonly icono: IconoTipoMaltrato;
   readonly fuente: string;
   readonly verificado: boolean;

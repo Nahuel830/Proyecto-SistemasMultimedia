@@ -33,6 +33,7 @@ export function TiposMaltrato() {
                   alt={tipo.alt}
                   loading="lazy"
                   decoding="async"
+                  style={{ objectPosition: tipo.posicionImagen }}
                 />
                 <span className={styles.icono} aria-hidden="true">
                   <Icono size={20} />

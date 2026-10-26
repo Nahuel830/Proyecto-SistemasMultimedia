@@ -47,11 +47,11 @@ export const imagenes = {
     perroAbandono: '/images/perro-abandono.jpg',
   },
   tipos: {
-    fisico: '/images/perro-tipo.jpg',
-    abandono: galeriaPropia.perro,
-    negligencia: '/images/gato-tipo.jpg',
-    psicologico: '/images/conejo-tipo.jpg',
-    explotacion: '/images/caballo-tipo.jpg',
+    fisico: '/images/tipos-fisico.jpg',
+    abandono: '/images/tipos-abandono.jpg',
+    negligencia: '/images/tipos-negligencia.jpg',
+    psicologico: '/images/tipos-psicologico.jpg',
+    explotacion: '/images/tipos-explotacion.jpg',
   },
   animales: {
     perro: '/images/perro.jpg',
