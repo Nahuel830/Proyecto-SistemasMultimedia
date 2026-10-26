@@ -1,4 +1,3 @@
-import { FUENTE_DOSSIER } from './estadisticas';
 import { imagenes } from './imagenes';
 import type { CategoriaGaleriaItem, GaleriaItem } from './types';
 
@@ -21,8 +20,8 @@ export const galeriaItems: readonly GaleriaItem[] = [
     descripcion:
       'Inspirado en la campaña viral que impactó a Bolivia. Aunque en el país no operan bioterios cosméticos masivos, el 90% de productos importados carece de sello Cruelty Free. Ralph representa a los miles de animales que sufren pruebas de toxicidad en el mundo.',
     categoria: 'conejos',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: ['can833'],
   },
   {
     id: 'perros-calle',
@@ -34,8 +33,8 @@ export const galeriaItems: readonly GaleriaItem[] = [
     descripcion:
       'En Bolivia se estima más de 4 millones de canes y felinos; un alto porcentaje carece de tenencia responsable. La esterilización temprana y la adopción son las únicas soluciones éticas frente al abandono sistemático en aceras y mercados.',
     categoria: 'perros',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'granja-bienestar',
@@ -47,8 +46,8 @@ export const galeriaItems: readonly GaleriaItem[] = [
     descripcion:
       'Normado por SENASAG bajo el principio de las 5 Libertades: libres de sed, hambre, miedo y dolor, y libres de expresar su comportamiento natural. Se prohíbe el maltrato físico y el transporte sin ventilación ni descanso.',
     categoria: 'granja',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['regensa-bienestar'],
   },
   {
     id: 'aves-trafico',
@@ -60,8 +59,8 @@ export const galeriaItems: readonly GaleriaItem[] = [
     descripcion:
       'Más de 170 operativos anuales de rescate de fauna silvestre en ferias bolivianas. Arrancados de la Amazonía y el Chaco para venta ilegal como mascotas enjauladas, sufriendo estrés y desnutrición severa.',
     categoria: 'aves',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
 ] as const;
 
@@ -85,8 +84,6 @@ export const galeriaPagina = {
   caso: 'Caso',
   entidad: 'Entidad / norma',
   fuente: 'Fuente',
-  sinVerificar: 'Sin verificar',
-  verificado: 'Verificado',
   vacio: 'No hay fichas en esta categoría.',
   teaser: {
     texto: 'Cuatro casos reales de Bolivia, con entidad y fuente.',

@@ -91,8 +91,8 @@ export function Lightbox({
                 <b>{galeriaPagina.entidad}:</b> {item.entidad}
               </p>
               <FuenteDato
-                fuente={item.fuente}
-                verificado={item.verificado}
+                estadoVerificacion={item.estadoVerificacion}
+                fuentes={item.fuentes}
                 compacto
                 className={styles.fuenteFicha}
               />

@@ -13,13 +13,14 @@ import { DonaChart } from './DonaChart';
 import styles from './Estadisticas.module.css';
 
 const fuentes = Array.from(
-  new Map([
-    ...cifrasBolivia.map((cifra) => [cifra.fuente, cifra.verificado] as const),
-    ...datosIlustrativos.maltrato.map(
-      (dato) => [dato.fuente, dato.verificado] as const,
+  new Map(
+    cifrasBolivia.flatMap((cifra) =>
+      cifra.fuentes.map(
+        (fuente) => [fuente, cifra.estadoVerificacion] as const,
+      ),
     ),
-  ]).entries(),
-).map(([fuente, verificado]) => ({ fuente, verificado }));
+  ).entries(),
+).map(([id, estadoVerificacion]) => ({ id, estadoVerificacion }));
 
 export function Estadisticas() {
   return (
@@ -46,8 +47,8 @@ export function Estadisticas() {
               <span className={styles.kpiEtiqueta}>{cifra.etiqueta}</span>
               <span className={styles.kpiDetalle}>{cifra.detalle}</span>
               <FuenteDato
-                fuente={cifra.fuente}
-                verificado={cifra.verificado}
+                estadoVerificacion={cifra.estadoVerificacion}
+                fuentes={cifra.fuentes}
                 compacto
               />
             </li>
@@ -123,10 +124,10 @@ export function Estadisticas() {
         <p>{estadisticasPagina.fuentesTexto}</p>
         <ul>
           {fuentes.map((fuente) => (
-            <li key={fuente.fuente}>
+            <li key={fuente.id}>
               <FuenteDato
-                fuente={fuente.fuente}
-                verificado={fuente.verificado}
+                estadoVerificacion={fuente.estadoVerificacion}
+                fuentes={[fuente.id]}
               />
             </li>
           ))}

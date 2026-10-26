@@ -1,36 +1,58 @@
-# Datos pendientes de verificar
+# Estado de verificación de datos
 
-Todos los datos de esta lista provienen del *Dossier Oficial de Datos Reales de Bolivia para Huellas de Esperanza* o de textos del proyecto, pero **ninguno cuenta con verificación independiente** (`verificado: false`). El dossier no incluye URLs, números de resolución ni citas textuales de fuente primaria; por eso debe contrastarse antes de publicarse o usarse en una emergencia.
+Los datos ya no usan `verificado: boolean`. Cada ficha declara `estadoVerificacion` y una lista de IDs de `src/data/fuentes.ts`. Los estados posibles son:
 
-| Dato | Valor | Módulo | Archivo | Fuente declarada | Estado | Cómo verificar |
-|---|---|---|---|---|---|---|
-| Teléfono/WhatsApp POFOMA | 69005708 | Ayuda/Recursos y Juego | `src/data/recursos.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | POFOMA Bolivia: llamada o mensaje de prueba y confirmación en canales oficiales de la Policía Boliviana. |
-| Línea gratuita POFOMA | 800 14 0303 | Ayuda/Recursos y Juego | `src/data/recursos.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | POFOMA Bolivia / Dirección Nacional de Policía; comprobar vigencia y cobertura nacional. |
-| Radio Patrulla | 110 | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Policía Boliviana / Radio Patrulla; confirmar que sigue operativo para flagrancia. |
-| Emergencias generales | 911 | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Operador nacional de emergencias o gobierno departamental; confirmar alcance. |
-| Teléfono Animales SOS Bolivia | (591-2) 2414687 | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Animales SOS Bolivia y registros de la Alcaldía de La Paz o Gobernación. |
-| Contacto Refugio Esperanza Bolivia 1 | +591 60004099 | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | El propio refugio y registros de la Gobernación de Santa Cruz. |
-| Contacto Refugio Esperanza Bolivia 2 | +591 61506208 | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | El propio refugio y registros de la Gobernación de Santa Cruz. |
-| Casos de biocidio en 2023 | 87 casos | Estadísticas e Inicio | `src/data/estadisticas.ts`, `src/data/contenido.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | POFOMA y Fiscalía General del Estado: solicitud de datos o informes anuales 2023. |
-| Sentencias condenatorias efectivas | 2 sentencias | Estadísticas e Inicio | `src/data/estadisticas.ts`, `src/data/contenido.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Fiscalía / Órgano Judicial: seguimiento de los 87 casos registrados en 2023. |
-| Pena por biocidio | 2 a 5 años de cárcel | Estadísticas, Tipos de maltrato y Juego | `src/data/estadisticas.ts`, `src/data/marcoLegal.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Gaceta Oficial de Bolivia y Fiscalía: texto vigente de la Ley 700, Art. 350 ter. |
-| Población estimada de canes y felinos | Más de 4 millones | Galería | `src/data/galeria.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Zoonosis y gobiernos municipales; comprobar si existe un censo nacional o estimaciones oficiales. |
-| Cosméticos importados sin sello Cruelty Free | 90 % | Galería | `src/data/galeria.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | AGEMED y Humane Society / registros de importación; precisar año y universo de productos. |
-| Operativos anuales de rescate de fauna silvestre | Más de 170 | Galería | `src/data/galeria.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | POFOMA: informes de operativos de fauna silvestre y año de referencia. |
-| Libertades del bienestar animal | 5 Libertades | Galería y Juego | `src/data/galeria.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | SENASAG: texto del Capítulo 1.3 de bienestar animal. |
-| Regulación SENASAG | R.A. 0230/2024 | Estadísticas, Tipos de maltrato y Juego | `src/data/estadisticas.ts`, `src/data/marcoLegal.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | SENASAG y Gaceta Oficial: número, fecha y texto vigente de la resolución. |
-| Protección de fauna silvestre | Ley 1333, Art. 111 | Tipos de maltrato, Galería y Juego | `src/data/marcoLegal.ts`, `src/data/galeria.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Gaceta Oficial / Asamblea Legislativa y POFOMA: texto vigente y alcance del artículo. |
-| Registro sanitario cosmético | Decisión 833 de la CAN | Tipos de maltrato, Galería y Juego | `src/data/marcoLegal.ts`, `src/data/galeria.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | AGEMED y Secretaría General de la Comunidad Andina: norma vigente y aplicación en Bolivia. |
-| Biocidio y maltrato con sevicia | Ley 700, Art. 350 ter | Tipos de maltrato, Estadísticas y Juego | `src/data/marcoLegal.ts`, `src/data/estadisticas.ts`, `src/data/preguntasJuego.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Gaceta Oficial de Bolivia, Fiscalía y POFOMA: texto vigente y jurisprudencia. |
-| Refugio Animales SOS Bolivia | Nombre y contacto | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | La propia organización; registro municipal o departamental de entidades de protección animal. |
-| Refugio Esperanza Bolivia | Nombre y contactos | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | El propio refugio y la Gobernación de Santa Cruz. |
-| Refugio Gamaliel / APAF | Nombre y coordinación | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | La propia organización y la Alcaldía de Cochabamba. |
-| SPAT · Sociedad Protectora de Tarija | Nombre y coordinación | Ayuda/Recursos | `src/data/recursos.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | La propia organización, Albergue Municipal San Roque y Gobernación de Tarija. |
-| Censo Canino Nacional | Existencia y cifras | Galería | `src/data/galeria.ts` | Dossier oficial (POFOMA/Fiscalía, SENASAG, AGEMED) | Sin verificar | Zoonosis y gobiernos municipales; confirmar si el censo existe y su cobertura. |
+- `verificado`: el dato se comprobó directamente en la fuente enlazada.
+- `fuente-asignada`: existe una fuente pertinente, pero no se pudo leer completa o no confirma todavía el dato concreto.
+- `discrepancia`: hay una contradicción entre el dossier y la fuente, o la vigencia del dato está en duda.
+- `sin-verificar`: no hay fuente suficiente. No debe presentarse como dato confirmado.
+
+## Fuentes registradas
+
+| ID | Fuente | Tipo | Resultado de la consulta |
+|---|---|---|---|
+| `ley700-pl` | Proyecto de Ley 436/2023-2024 (Cámara de Diputados) | Norma | Es un proyecto de reforma, no el texto vigente. El PDF supera el límite de lectura directa. |
+| `gaceta` | Gaceta Oficial de Bolivia | Institucional | Solo se abrió la portada; no se localizó allí el texto de la Ley 700. |
+| `regensa-bienestar` | REGENSA, Capítulo 1.3 Bienestar Animal (SENASAG) | Norma | La consulta devolvió 403. Se mantiene como fuente asignada. |
+| `regensa-remates` | REGENSA: Reglamento Nacional de Remates y Faena (SENASAG) | Norma | La consulta devolvió 403. Se mantiene como fuente asignada. |
+| `can833` | Decisión 833 de la Comunidad Andina | Norma | PDF descargado y texto extraído: regula la Notificación Sanitaria Obligatoria de cosméticos. No confirma por sí solo la aplicación local de AGEMED. |
+| `pofoma-linea` | POFOMA: línea gratuita 800 14 0303 (El Alto) | Institucional | Error de transporte al consultar. El número queda como fuente asignada. |
+| `pofoma-cbba` | Opinión: 14 policías forestales en Cochabamba | Prensa | Artículo del 4 de enero de 2020. Confirma 76454235 y 72005779 como contactos históricos de Cochabamba. |
+| `refugio-esperanza` | Refugio Esperanza Bolivia: sitio oficial | Institucional | La página oficial muestra `(+591) 60004099` y `61506208`. |
+| `spat` | InfoTarija: líneas telefónicas de SPAT | Prensa | Solo se recuperó el título; no se confirmaron teléfonos. |
+| `animales-sos` | Todos Negocios: Animales SOS Bolivia | Directorio | La consulta devolvió 403. El directorio figura con 77229500, distinto del dossier. |
+
+## Datos y estado actual
+
+| Dato | Valor | Módulo | Fuentes | Estado | Acción pendiente |
+|---|---|---|---|---|---|
+| Pena por biocidio | 2 a 5 años | Estadísticas, Tipos y Juego | `ley700-pl`, `gaceta` | Fuente asignada | Leer el texto vigente de la Ley 700, Art. 350 ter. |
+| Resolución SENASAG | Número no mostrado en pantalla | Estadísticas, Tipos, Marco legal y Juego | `regensa-bienestar`, `regensa-remates` | Discrepancia | El dossier dice R.A. 0230/2024 y la fuente asignada, 0246/2024. Confirmar número y texto; no publicar el número hasta resolver. |
+| 5 Libertades, aturdimiento y picanas | Contenido de bienestar animal | Estadísticas, Galería, Tipos, Marco legal y Juego | `regensa-bienestar`, `regensa-remates` | Discrepancia | Contrastar el texto del REGENSA y la resolución vigente. |
+| Decisión 833 y NSO | Armonización cosmética andina | Marco legal, Galería y Juego | `can833` | Fuente asignada | Confirmar la aplicación concreta de AGEMED en Bolivia. |
+| “Bolivia no prohíbe importar cosméticos testeados” | Afirmación interpretativa | Marco legal y Juego | `can833` | Sin verificar | Requiere una norma o comunicación oficial boliviana. |
+| Línea gratuita POFOMA | 800 14 0303 | Ayuda/Recursos y Juego | `pofoma-linea` | Fuente asignada | Abrir la fuente o confirmar con POFOMA. |
+| Celular/WhatsApp POFOMA | 69005708 | Ayuda/Recursos y Juego | Ninguna | Sin verificar | No presentar como canal confirmado. |
+| POFOMA Cochabamba (histórico) | 76454235 / 72005779 | Ayuda/Recursos | `pofoma-cbba` | Discrepancia | Contacto de prensa de 2020; confirmar vigencia. La UI no habilita llamada. |
+| Refugio Esperanza Bolivia | 60004099 / 61506208 | Ayuda/Recursos | `refugio-esperanza` | Verificado | Mantener seguimiento periódico del sitio oficial. |
+| SPAT Tarija | Nombre y coordinación | Ayuda/Recursos | `spat` | Fuente asignada | Confirmar la organización y los canales; la fuente no mostró teléfonos. |
+| Animales SOS Bolivia | (591-2) 2414687 o 77229500 | Ayuda/Recursos | `animales-sos` | Discrepancia | Ninguno de los dos números está confirmado. La UI no habilita llamada. |
+| Radio Patrulla / Emergencias | 110 / 911 | Ayuda/Recursos | Ninguna | Sin verificar | Confirmar vigencia y alcance. |
+| Casos de biocidio 2023 | 87 casos | Estadísticas e Inicio | Ninguna | Sin verificar | Solicitar datos a POFOMA y Fiscalía. |
+| Sentencias condenatorias | 2 sentencias | Estadísticas e Inicio | Ninguna | Sin verificar | Seguimiento judicial de los casos de 2023. |
+| Población de canes y felinos | Más de 4 millones | Galería | Ninguna | Sin verificar | Confirmar censo o estimación oficial. |
+| Cosméticos sin sello Cruelty Free | 90 % | Galería | `can833` (solo contexto normativo) | Sin verificar | Precisar año, universo y fuente del porcentaje. |
+| Operativos de rescate de fauna | Más de 170 al año | Galería | Ninguna | Sin verificar | Solicitar informes a POFOMA. |
+| Censo Canino Nacional | Existencia y cifras | Galería | Ninguna | Sin verificar | Confirmar si existe y qué cobertura tiene. |
+| Ley 1333, Art. 111 | Protección de fauna silvestre | Tipos, Galería, Marco legal y Juego | Ninguna | Sin verificar | Incorporar el texto oficial de la norma. |
+| Refugio Gamaliel / APAF | Nombre y coordinación | Ayuda/Recursos | Ninguna | Sin verificar | Contactar a la organización y a la Alcaldía de Cochabamba. |
+| Guías de adopción y cuidado | Textos orientativos | Recursos | Ninguna | Sin verificar | Son contenido del proyecto, no fuente oficial. |
+| Redes sociales | URLs genéricas | Recursos | Ninguna | Sin verificar | Sustituir por cuentas oficiales. |
 
 ## Notas de alcance
 
-- Las guías de adopción y cuidado de `src/data/recursos.ts` declaran como fuente la “Guía de tenencia responsable del proyecto”; son orientativas y no provienen del dossier.
-- Los enlaces de redes sociales son URLs genéricas de cada plataforma y no cuentas oficiales.
-- Los porcentajes de la dona y de las barras son datos ilustrativos del proyecto, no cifras oficiales.
-- `docs/DECISIONES.md` mantiene el contexto de implementación; este documento es la lista operativa de verificación.
+- `refugio-esperanza` es el único dato de contacto marcado como verificado porque los dos teléfonos aparecen en el sitio oficial del refugio.
+- Los datos con `discrepancia` no habilitan enlaces `tel:` ni WhatsApp en la interfaz.
+- Los enlaces de fuentes se abren en una pestaña nueva con `rel="noopener noreferrer"`.
+- Los porcentajes de la dona y de las barras siguen siendo ilustrativos y no usan el registro de fuentes.
+- `docs/DECISIONES.md` mantiene el contexto de implementación; este documento es la lista operativa.

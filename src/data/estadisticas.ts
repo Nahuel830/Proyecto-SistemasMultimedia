@@ -5,14 +5,10 @@ import type {
   DatoMaltrato,
 } from './types';
 
-export const FUENTE_DOSSIER =
-  'Dossier Oficial de Datos Reales de Bolivia (POFOMA / Fiscalía, SENASAG, AGEMED)';
-
 const fuenteIlustrativa = {
   ilustrativo: true,
-  fuente:
-    'Datos ilustrativos del proyecto; no provienen del dossier ni de una fuente oficial.',
-  verificado: false,
+  estadoVerificacion: 'sin-verificar',
+  fuentes: [],
 } as const;
 
 export const cifrasBolivia: readonly CifraBolivia[] = [
@@ -23,8 +19,8 @@ export const cifrasBolivia: readonly CifraBolivia[] = [
     detalle:
       'Registro 2023 de POFOMA / Fiscalía. Solo 2 casos llegaron a sentencia condenatoria efectiva.',
     icono: 'casos',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'sentencias',
@@ -33,8 +29,8 @@ export const cifrasBolivia: readonly CifraBolivia[] = [
     detalle:
       'De los 87 casos de biocidio registrados en Bolivia durante 2023.',
     icono: 'sentencias',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'pena',
@@ -43,18 +39,18 @@ export const cifrasBolivia: readonly CifraBolivia[] = [
     detalle:
       'Ley 700, Artículo 350 ter del Código Penal: biocidio y maltrato con sevicia.',
     icono: 'pena',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['ley700-pl', 'gaceta'],
   },
   {
     id: 'senasag',
-    valor: 'R.A. 0230/2024',
-    etiqueta: 'regulación SENASAG',
+    valor: 'Cap. 1.3',
+    etiqueta: 'bienestar animal (SENASAG)',
     detalle:
       'Aturdimiento humanitario obligatorio y prohibición de picanas y castigos mecánicos en faena.',
     icono: 'norma',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['regensa-bienestar'],
   },
 ] as const;
 
@@ -174,7 +170,7 @@ export const estadisticasPagina = {
   frase: 'Cada cifra representa una vida',
   kpiTitulo: 'Bolivia en cifras',
   kpiTexto:
-    'Datos tomados del dossier de POFOMA, Fiscalía y SENASAG. Todas las cifras quedan marcadas como sin verificar hasta contar con validación independiente.',
+    'Datos del dossier de POFOMA, Fiscalía y SENASAG. Cada cifra muestra su estado de verificación y las fuentes asignadas.',
   graficosTitulo: 'Datos ilustrativos del proyecto',
   graficosTexto:
     'Estos porcentajes no son cifras oficiales de Bolivia. Se mantienen como apoyo visual y están marcados como ilustrativos para no confundirlos con los datos del dossier.',
@@ -190,7 +186,7 @@ export const estadisticasPagina = {
   graficosAria: 'Gráficos ilustrativos del proyecto',
   fuentesTitulo: 'Fuentes y verificación',
   fuentesTexto:
-    'El dossier reúne referencias de POFOMA y la Fiscalía, la Ley 700, la Ley 1333, la R.A. SENASAG 0230/2024 y AGEMED / CAN 833. Antes de publicar, contrasta cada cifra y contacto con la fuente primaria.',
+    'El dossier reúne referencias de POFOMA y la Fiscalía, la Ley 700, la Ley 1333, el Reglamento SENASAG de Bienestar Animal y AGEMED / CAN 833. Antes de publicar, contrasta cada cifra y contacto con la fuente primaria.',
   ctaTexto:
     'Conocer qué conductas constituyen maltrato y qué instituciones intervienen en Bolivia.',
   ctaBoton: 'Ver tipos de maltrato',

@@ -202,6 +202,20 @@
   background: var(--color-mint-300);
 }
 
+.telefonoInactivo,
+.telefonoInactivo:hover {
+  color: var(--color-ink-muted);
+  background: var(--color-cream-200);
+  transform: none;
+  cursor: default;
+}
+
+.confirmar {
+  color: #8a4a10;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
 .whatsappLinea {
   color: var(--color-white);
   background: #128c4a;

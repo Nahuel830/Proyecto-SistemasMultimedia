@@ -1,4 +1,3 @@
-import { FUENTE_DOSSIER } from './estadisticas';
 import type {
   AccesoRecurso,
   EnlaceSocial,
@@ -26,18 +25,20 @@ export const recursosPagina = {
   ariaSecciones: 'Recursos de ayuda para animales',
   ariaLista: 'Pasos y consejos',
   aviso:
-    'Los teléfonos, direcciones y nombres de instituciones provienen del dossier oficial y están pendientes de verificación independiente. Confirma cada dato antes de usarlo en una emergencia.',
+    'Los teléfonos, direcciones y nombres de instituciones provienen del dossier o de fuentes asignadas. Cada ficha indica si está verificada, pendiente o en revisión; confirma cada dato antes de usarlo en una emergencia.',
   compartirTitulo: 'Comparte esta revista',
   compartirTexto:
     'Difundir información veraz también ayuda. Comparte Huellas de Esperanza con tu entorno.',
   ariaRedes: 'Comparte esta revista en redes sociales',
+  redGenerica:
+    'Enlace genérico de la plataforma; cuenta oficial pendiente.',
   nota: 'Juntos podemos hacer la diferencia',
   protocoloTitulo: 'Protocolo para denunciar',
   protocoloIntro:
     'Sigue estos pasos si presencias maltrato. No pongas en riesgo tu integridad ni la de otras personas.',
   lineasTitulo: 'Líneas de atención directa',
   lineasIntro:
-    'Canales citados en el dossier. Toca un número para llamar; usa WhatsApp solo cuando el enlace esté disponible.',
+    'Canales citados en el dossier o en fuentes asignadas. Los números con discrepancia no habilitan llamada; confírmalos antes de usarlos.',
   institucionesTitulo: 'Instituciones competentes',
   institucionesIntro:
     'Cada institución atiende un tipo distinto de caso. Elegir el canal correcto evita perder tiempo.',
@@ -46,16 +47,15 @@ export const recursosPagina = {
   cuandoHeader: '¿Cuándo acudir?',
   refugiosTitulo: 'Directorio de refugios y centros de rescate',
   refugiosIntro:
-    'Contactos citados en el dossier. La verificación de cada organización queda pendiente.',
+    'Contactos citados en el dossier o en fuentes asignadas. Cada ficha indica su estado de verificación.',
   guiasTitulo: 'Adopción y cuidado',
   guiasIntro:
     'Pautas para asumir una tenencia responsable y cuidar a los animales del hogar.',
   fuente: 'Fuente',
-  sinVerificar: 'Sin verificar',
-  verificado: 'Verificado',
   llamar: 'Llamar',
   whatsapp: 'WhatsApp',
   coordinacion: 'Coordinación',
+  confirmarAntesDeLlamar: 'Confirmar antes de llamar.',
   teaser: {
     titulo: 'Ayuda y recursos',
     texto: 'Protocolo, teléfonos oficiales, refugios y consejos de cuidado.',
@@ -76,24 +76,24 @@ export const protocoloDenuncia: readonly PasoProtocolo[] = [
     titulo: 'Registra las pruebas',
     texto:
       'Toma fotos y videos claros del maltrato o del estado del animal sin confrontar al agresor. Anota la dirección exacta, la fecha, la hora y los testigos presenciales.',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'denuncia',
     titulo: 'Acude a la autoridad',
     texto:
       'Presenta la denuncia en la Estación Policial Integral (EPI) más cercana o en las oficinas de POFOMA de la capital de tu departamento.',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'linea',
     titulo: 'Usa el canal adecuado',
     texto:
       'Para delitos penales y fauna silvestre, contacta a POFOMA. Si hay flagrancia, llama a Radio Patrulla (110); para una emergencia general, marca 911.',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
 ] as const;
 
@@ -105,8 +105,8 @@ export const lineasAtencion: readonly LineaAtencion[] = [
     telefono: '+591 69005708',
     tel: 'tel:+59169005708',
     whatsapp: 'https://wa.me/59169005708',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'pofoma-gratuita',
@@ -114,8 +114,8 @@ export const lineasAtencion: readonly LineaAtencion[] = [
     descripcion: 'Recepción de denuncias ciudadanas a nivel nacional.',
     telefono: '800 14 0303',
     tel: 'tel:800140303',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['pofoma-linea'],
   },
   {
     id: 'radio-patrulla',
@@ -123,8 +123,8 @@ export const lineasAtencion: readonly LineaAtencion[] = [
     descripcion: 'Flagrancia y emergencias policiales.',
     telefono: '110',
     tel: 'tel:110',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'emergencias',
@@ -132,8 +132,18 @@ export const lineasAtencion: readonly LineaAtencion[] = [
     descripcion: 'Riesgo inmediato para personas o animales.',
     telefono: '911',
     tel: 'tel:911',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
+  },
+  {
+    id: 'pofoma-cochabamba-2020',
+    nombre: 'POFOMA Cochabamba · contacto histórico (2020)',
+    descripcion:
+      'Números publicados por prensa en 2020 para denuncias en Cochabamba. Confirmar vigencia; no usar como canal principal.',
+    telefono: '76454235 / 72005779',
+    tel: 'tel:76454235',
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['pofoma-cbba'],
   },
 ] as const;
 
@@ -145,8 +155,8 @@ export const institucionesCompetencia: readonly InstitucionCompetencia[] = [
       'Delitos penales contra la vida animal y fauna silvestre (Ley 700 / Ley 1333).',
     cuando:
       'Biocidio, golpizas severas, envenenamiento y tenencia o tráfico de loros, monos y quirquinchos.',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'zoonosis',
@@ -155,8 +165,8 @@ export const institucionesCompetencia: readonly InstitucionCompetencia[] = [
       'Control sanitario, mordeduras, abandono urbano, registro y campañas de vacunación.',
     cuando:
       'Canes en la vía pública sin control, denuncias por ruidos o hacinamiento en viviendas vecinas y campañas antirrábicas.',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'senasag',
@@ -165,8 +175,8 @@ export const institucionesCompetencia: readonly InstitucionCompetencia[] = [
       'Sanidad agropecuaria, transporte interdepartamental y faenado en mataderos.',
     cuando:
       'Crueldad en transporte de ganado, mataderos clandestinos o incumplimiento de bienestar animal en granjas pecuarias.',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['regensa-bienestar', 'regensa-remates'],
   },
 ] as const;
 
@@ -184,9 +194,10 @@ export const refugios: readonly Refugio[] = [
         tel: 'tel:+59122414687',
       },
     ],
-    coordinacion: 'Web y redes oficiales de Animales SOS',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    coordinacion:
+      'El directorio comercial lista 77229500; ningún número está confirmado.',
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['animales-sos'],
   },
   {
     id: 'refugio-esperanza',
@@ -207,8 +218,8 @@ export const refugios: readonly Refugio[] = [
       },
     ],
     coordinacion: 'Santa Cruz de la Sierra',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'verificado',
+    fuentes: ['refugio-esperanza'],
   },
   {
     id: 'gamaliel-apaf',
@@ -218,8 +229,8 @@ export const refugios: readonly Refugio[] = [
       'Rescate y acogida de animales comunitarios maltratados.',
     telefonos: [],
     coordinacion: 'Redes sociales y campañas de adopción dominicales',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'spat',
@@ -229,8 +240,8 @@ export const refugios: readonly Refugio[] = [
       'Defensa animal y fomento de esterilizaciones junto al Albergue Municipal San Roque y rescatistas independientes locales.',
     telefonos: [],
     coordinacion: 'Albergue Municipal San Roque y rescatistas locales',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['spat'],
   },
 ] as const;
 
@@ -247,32 +258,32 @@ export const seccionesRecursos: readonly SeccionRecursos[] = [
         titulo: 'Evalúa tu tiempo y espacio',
         texto:
           'Piensa cuántas horas estará sola la mascota, si tu hogar es seguro y si puedes cubrir alimento, veterinario y cuidados durante toda su vida.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
       {
         id: 'adopta-proceso',
         titulo: 'Elige un refugio o rescatista',
         texto:
           'Busca una organización verificable, visita el lugar y pregunta por su proceso de adopción. Usa el directorio de refugios de esta página como punto de partida.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
       {
         id: 'adopta-prepara',
         titulo: 'Prepara el hogar',
         texto:
           'Reserva un espacio tranquilo, retira objetos peligrosos y ten agua, alimento y un transportín listos antes de la llegada.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
       {
         id: 'adopta-compromiso',
         titulo: 'Asume el compromiso',
         texto:
           'Esterilización, vacunas, identificación y revisiones veterinarias forman parte de una tenencia responsable.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
     ],
   },
@@ -288,32 +299,32 @@ export const seccionesRecursos: readonly SeccionRecursos[] = [
         titulo: 'Perros',
         texto:
           'Agua limpia siempre, paseos diarios, alimento adecuado a su edad y peso, vacunas al día y compañía. Evita dejarlo atado o encerrado durante largas horas.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
       {
         id: 'consejo-gatos',
         titulo: 'Gatos',
         texto:
           'Arena limpia, espacios para trepar y esconderse, agua fresca, alimento según su etapa y revisiones veterinarias. Necesitan estimulación y un lugar seguro.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
       {
         id: 'consejo-conejos',
         titulo: 'Conejos',
         texto:
           'Heno disponible todo el día, agua limpia, espacio para moverse y un refugio tranquilo. Evita el calor extremo y consulta al veterinario ante cambios de apetito.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
       {
         id: 'consejo-general',
         titulo: 'Todos los animales',
         texto:
           'Observa su comportamiento, mantén su entorno limpio y evita el maltrato psicológico: gritos, aislamiento o amenazas también causan sufrimiento.',
-        fuente: 'Guía de tenencia responsable del proyecto',
-        verificado: false,
+        estadoVerificacion: 'sin-verificar',
+        fuentes: [],
       },
     ],
   },
@@ -325,39 +336,39 @@ export const redesSociales: readonly EnlaceSocial[] = [
     nombre: 'Facebook',
     href: 'https://www.facebook.com',
     icono: 'facebook',
-    fuente: 'Enlace genérico de la plataforma; cuenta oficial pendiente.',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'instagram',
     nombre: 'Instagram',
     href: 'https://www.instagram.com',
     icono: 'instagram',
-    fuente: 'Enlace genérico de la plataforma; cuenta oficial pendiente.',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'tiktok',
     nombre: 'TikTok',
     href: 'https://www.tiktok.com',
     icono: 'tiktok',
-    fuente: 'Enlace genérico de la plataforma; cuenta oficial pendiente.',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'youtube',
     nombre: 'YouTube',
     href: 'https://www.youtube.com',
     icono: 'youtube',
-    fuente: 'Enlace genérico de la plataforma; cuenta oficial pendiente.',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 'whatsapp',
     nombre: 'WhatsApp',
     href: 'https://www.whatsapp.com',
     icono: 'whatsapp',
-    fuente: 'Enlace genérico de la plataforma; cuenta oficial pendiente.',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
 ] as const;

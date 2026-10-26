@@ -355,8 +355,8 @@ export function JuegoQuiz({
 
               {respondida && (
                 <FuenteDato
-                  fuente={pregunta.fuente}
-                  verificado={pregunta.verificado}
+                  estadoVerificacion={pregunta.estadoVerificacion}
+                  fuentes={pregunta.fuentes}
                   compacto
                   className={styles.fuentePregunta}
                 />

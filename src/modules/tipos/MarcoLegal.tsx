@@ -31,8 +31,8 @@ export function MarcoLegal() {
               {item.aplicacion}
             </p>
             <FuenteDato
-              fuente={item.fuente}
-              verificado={item.verificado}
+              estadoVerificacion={item.estadoVerificacion}
+              fuentes={item.fuentes}
               compacto
             />
           </li>

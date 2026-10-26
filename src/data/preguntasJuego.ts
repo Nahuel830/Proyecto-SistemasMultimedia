@@ -14,8 +14,8 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'b',
     feedback:
       'La Ley 700 incorporó el Artículo 350 ter al Código Penal boliviano y fijó una reclusión de 2 a 5 años para quien mate con ensañamiento a un animal.',
-    fuente: 'Dossier de Bolivia · Ley 700, Código Penal, Art. 350 ter',
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['ley700-pl', 'gaceta'],
   },
   {
     id: 2,
@@ -28,8 +28,8 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'a',
     feedback:
       'El test Draize aplica químicos y cosméticos directamente en los ojos o la piel afeitada de conejos conscientes, sin anestesia.',
-    fuente: 'Dossier de Bolivia · Campaña Save Ralph / Humane Society',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 3,
@@ -42,8 +42,8 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'b',
     feedback:
       'POFOMA es la unidad especializada de la Policía Boliviana encargada de investigar biocidios, tratos crueles y tráfico ilícito de fauna.',
-    fuente: 'Dossier de Bolivia · POFOMA',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 4,
@@ -56,8 +56,8 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'b',
     feedback:
       'Bolivia no tiene una ley nacional que prohíba el testeo cosmético ni la importación de cosméticos probados en animales fuera de sus fronteras.',
-    fuente: 'Dossier de Bolivia · AGEMED / Decisión CAN 833',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: ['can833'],
   },
   {
     id: 5,
@@ -70,8 +70,8 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'b',
     feedback:
       'Las 5 Libertades incluyen estar libre de hambre y sed, dolor y enfermedad, miedo y angustia, incomodidad física y poder expresar el comportamiento natural.',
-    fuente: 'Dossier de Bolivia · SENASAG, Cap. 1.3 Bienestar',
-    verificado: false,
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['regensa-bienestar'],
   },
   {
     id: 6,
@@ -83,9 +83,9 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     ],
     correctaId: 'b',
     feedback:
-      'La R.A. SENASAG prohíbe el degüello sin aturdimiento previo y veta las picanas, los gritos o los recursos mecánicos que generen angustia.',
-    fuente: 'Dossier de Bolivia · R.A. SENASAG 0230/2024',
-    verificado: false,
+      'La regulación SENASAG exige aturdimiento o insensibilización previa y veta las picanas y los castigos mecánicos que generen angustia.',
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['regensa-bienestar', 'regensa-remates'],
   },
   {
     id: 7,
@@ -97,9 +97,9 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     ],
     correctaId: 'a',
     feedback:
-      'AGEMED otorga la Notificación Sanitaria Obligatoria (NSO) bajo las directrices de la Decisión 833 de la Comunidad Andina de Naciones.',
-    fuente: 'Dossier de Bolivia · AGEMED / Decisión CAN 833',
-    verificado: false,
+      'La Decisión 833 de la CAN establece la Notificación Sanitaria Obligatoria (NSO) para cosméticos. En Bolivia, AGEMED es la autoridad señalada para aplicarla.',
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['can833'],
   },
   {
     id: 8,
@@ -112,12 +112,13 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'b',
     feedback:
       'La tenencia, compra o comercialización de fauna silvestre está prohibida por la Ley 1333 (Art. 111), con penas de privación de libertad.',
-    fuente: 'Dossier de Bolivia · Ley 1333, Art. 111',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 9,
-    pregunta: '¿Cuál es el canal oficial de WhatsApp directo de POFOMA Bolivia?',
+    pregunta:
+      '¿Qué número de mensajería se ha difundido para denuncias de POFOMA?',
     opciones: [
       { id: 'a', texto: '911 exclusivo para mascotas' },
       { id: 'b', texto: 'Celular nacional +591 69005708' },
@@ -125,9 +126,9 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     ],
     correctaId: 'b',
     feedback:
-      'POFOMA habilitó la línea de mensajería y llamadas 69005708 y la línea gratuita 800 14 0303 para recibir denuncias ciudadanas inmediatas.',
-    fuente: 'Dossier de Bolivia · POFOMA',
-    verificado: false,
+      'El 69005708 aparece en el dossier, pero no se confirmó en una fuente oficial: verifícalo antes de usarlo. La línea gratuita citada es 800 14 0303.',
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
   {
     id: 10,
@@ -140,8 +141,8 @@ export const preguntasJuego: readonly PreguntaJuego[] = [
     correctaId: 'b',
     feedback:
       'La OMS, Zoonosis y los colectivos de bienestar animal confirman que la esterilización masiva junto a la tenencia responsable es la única vía humanitaria sostenible.',
-    fuente: 'Dossier de Bolivia · OMS / Zoonosis',
-    verificado: false,
+    estadoVerificacion: 'sin-verificar',
+    fuentes: [],
   },
 ] as const;
 

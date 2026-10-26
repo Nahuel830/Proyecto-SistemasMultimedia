@@ -1,8 +1,17 @@
 # Decisiones del proyecto
 
+## Fuentes y estados de verificación (2026-10-26)
+
+- Se reemplazó `verificado: boolean` por `estadoVerificacion` (`verificado`, `fuente-asignada`, `discrepancia`, `sin-verificar`) y `fuentes: []` en todos los datos verificables.
+- `src/data/fuentes.ts` centraliza el registro de 10 fuentes con `id`, título, URL, tipo, fecha de fuente cuando existe y fecha de consulta. Los datos guardan IDs, no URLs duplicadas.
+- `FuenteDato` muestra un badge por estado y enlaces externos a cada fuente registrada. El badge “Verificado” solo aparece si el dato se comprobó directamente en la fuente.
+- Las discrepancias telefónicas no generan enlaces `tel:` ni WhatsApp: muestran “Confirmar antes de llamar”. Refugio Esperanza queda verificado porque ambos números aparecen en su sitio oficial.
+- El número de resolución SENASAG no se muestra en pantalla mientras exista la discrepancia entre el dossier (R.A. 0230/2024) y la fuente asignada (R.A. 0246/2024).
+- La lista operativa actualizada vive en `docs/DATOS_PENDIENTES_VERIFICAR.md`. Las fuentes bloqueadas o incompletas no se marcan como verificadas.
+
 ## Cierre de datos y transparencia (2026-10-26)
 
-- Galería (`galeria.ts`), Juego (`preguntasJuego.ts`) y Ayuda/Recursos (`recursos.ts`) usan los contenidos del dossier oficial; siguen con `verificado: false` hasta confirmación con POFOMA, Fiscalía, SENASAG, AGEMED, municipios o los propios refugios.
+- Galería (`galeria.ts`), Juego (`preguntasJuego.ts`) y Ayuda/Recursos (`recursos.ts`) usan contenidos del dossier oficial; cada ficha indica ahora su estado de verificación y sus fuentes asignadas.
 - La dona y las barras de Estadísticas son ilustrativas y no representan cifras oficiales. El aviso se muestra con `configuracion.mostrarNotaDatosDemo`; las imágenes de especies se reemplazaron por las de Galería/Tipos y “Otros” usa un icono.
 - Mi historia es narrativa ficticia y se identifica con un aviso al inicio de la página; los datos reales viven en Estadísticas, Tipos de maltrato y Ayuda.
 - La lista operativa de teléfonos, cifras, normas y refugios pendientes está en `docs/DATOS_PENDIENTES_VERIFICAR.md`.

@@ -56,8 +56,8 @@ export function AyudaRecursos({
                   <h3>{paso.titulo}</h3>
                   <p>{paso.texto}</p>
                   <FuenteDato
-                    fuente={paso.fuente}
-                    verificado={paso.verificado}
+                    estadoVerificacion={paso.estadoVerificacion}
+                    fuentes={paso.fuentes}
                     compacto
                   />
                 </div>
@@ -78,37 +78,59 @@ export function AyudaRecursos({
           </header>
 
           <ul className={styles.lineas}>
-            {lineasAtencion.map((linea) => (
-              <li key={linea.id} className={styles.linea}>
-                <div className={styles.lineaTexto}>
-                  <h3>{linea.nombre}</h3>
-                  <p>{linea.descripcion}</p>
-                  <div className={styles.accionesLinea}>
-                    <a href={linea.tel} className={styles.telefono}>
-                      <Phone size={15} aria-hidden="true" />
-                      <span>{linea.telefono}</span>
-                    </a>
-                    {linea.whatsapp && (
-                      <a
-                        href={linea.whatsapp}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.whatsappLinea}
-                        aria-label={`${recursosPagina.whatsapp}: ${linea.telefono}`}
-                      >
-                        <MessageCircle size={15} aria-hidden="true" />
-                        <span>{recursosPagina.whatsapp}</span>
-                      </a>
+            {lineasAtencion.map((linea) => {
+              const enRevision =
+                linea.estadoVerificacion === 'discrepancia';
+
+              return (
+                <li key={linea.id} className={styles.linea}>
+                  <div className={styles.lineaTexto}>
+                    <h3>{linea.nombre}</h3>
+                    <p>{linea.descripcion}</p>
+                    <div className={styles.accionesLinea}>
+                      {enRevision ? (
+                        <span
+                          className={clsx(
+                            styles.telefono,
+                            styles.telefonoInactivo,
+                          )}
+                        >
+                          <Phone size={15} aria-hidden="true" />
+                          <span>{linea.telefono}</span>
+                        </span>
+                      ) : (
+                        <a href={linea.tel} className={styles.telefono}>
+                          <Phone size={15} aria-hidden="true" />
+                          <span>{linea.telefono}</span>
+                        </a>
+                      )}
+                      {linea.whatsapp && !enRevision && (
+                        <a
+                          href={linea.whatsapp}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.whatsappLinea}
+                          aria-label={`${recursosPagina.whatsapp}: ${linea.telefono}`}
+                        >
+                          <MessageCircle size={15} aria-hidden="true" />
+                          <span>{recursosPagina.whatsapp}</span>
+                        </a>
+                      )}
+                    </div>
+                    {enRevision && (
+                      <p className={styles.confirmar}>
+                        {recursosPagina.confirmarAntesDeLlamar}
+                      </p>
                     )}
                   </div>
-                </div>
-                <FuenteDato
-                  fuente={linea.fuente}
-                  verificado={linea.verificado}
-                  compacto
-                />
-              </li>
-            ))}
+                  <FuenteDato
+                    estadoVerificacion={linea.estadoVerificacion}
+                    fuentes={linea.fuentes}
+                    compacto
+                  />
+                </li>
+              );
+            })}
           </ul>
         </article>
 
@@ -140,8 +162,8 @@ export function AyudaRecursos({
                     <th scope="row">
                       <span>{institucion.institucion}</span>
                       <FuenteDato
-                        fuente={institucion.fuente}
-                        verificado={institucion.verificado}
+                        estadoVerificacion={institucion.estadoVerificacion}
+                        fuentes={institucion.fuentes}
                         compacto
                       />
                     </th>
@@ -166,46 +188,77 @@ export function AyudaRecursos({
           </header>
 
           <ul className={styles.refugios}>
-            {refugios.map((refugio) => (
-              <li key={refugio.id} className={styles.refugio}>
-                <p className={styles.departamento}>
-                  {refugio.departamento}
-                </p>
-                <h3>{refugio.nombre}</h3>
-                <p>{refugio.descripcion}</p>
+            {refugios.map((refugio) => {
+              const enRevision =
+                refugio.estadoVerificacion === 'discrepancia';
 
-                {refugio.telefonos.length > 0 && (
-                  <ul className={styles.telefonosRefugio}>
-                    {refugio.telefonos.map((telefono) => (
-                      <li key={telefono.tel}>
-                        <a href={telefono.tel} className={styles.telefono}>
-                          <Phone size={14} aria-hidden="true" />
-                          <span>
-                            <span className={styles.telefonoEtiqueta}>
-                              {telefono.etiqueta}:
-                            </span>{' '}
-                            {telefono.numero}
-                          </span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {refugio.coordinacion && (
-                  <p className={styles.coordinacion}>
-                    <strong>{recursosPagina.coordinacion}:</strong>{' '}
-                    {refugio.coordinacion}
+              return (
+                <li key={refugio.id} className={styles.refugio}>
+                  <p className={styles.departamento}>
+                    {refugio.departamento}
                   </p>
-                )}
+                  <h3>{refugio.nombre}</h3>
+                  <p>{refugio.descripcion}</p>
 
-                <FuenteDato
-                  fuente={refugio.fuente}
-                  verificado={refugio.verificado}
-                  compacto
-                />
-              </li>
-            ))}
+                  {refugio.telefonos.length > 0 && (
+                    <ul className={styles.telefonosRefugio}>
+                      {refugio.telefonos.map((telefono) => (
+                        <li key={telefono.tel}>
+                          {enRevision ? (
+                            <span
+                              className={clsx(
+                                styles.telefono,
+                                styles.telefonoInactivo,
+                              )}
+                            >
+                              <Phone size={14} aria-hidden="true" />
+                              <span>
+                                <span className={styles.telefonoEtiqueta}>
+                                  {telefono.etiqueta}:
+                                </span>{' '}
+                                {telefono.numero}
+                              </span>
+                            </span>
+                          ) : (
+                            <a
+                              href={telefono.tel}
+                              className={styles.telefono}
+                            >
+                              <Phone size={14} aria-hidden="true" />
+                              <span>
+                                <span className={styles.telefonoEtiqueta}>
+                                  {telefono.etiqueta}:
+                                </span>{' '}
+                                {telefono.numero}
+                              </span>
+                            </a>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {enRevision && (
+                    <p className={styles.confirmar}>
+                      {recursosPagina.confirmarAntesDeLlamar}
+                    </p>
+                  )}
+
+                  {refugio.coordinacion && (
+                    <p className={styles.coordinacion}>
+                      <strong>{recursosPagina.coordinacion}:</strong>{' '}
+                      {refugio.coordinacion}
+                    </p>
+                  )}
+
+                  <FuenteDato
+                    estadoVerificacion={refugio.estadoVerificacion}
+                    fuentes={refugio.fuentes}
+                    compacto
+                  />
+                </li>
+              );
+            })}
           </ul>
         </article>
 
@@ -252,8 +305,8 @@ export function AyudaRecursos({
                           <h4>{item.titulo}</h4>
                           <p>{item.texto}</p>
                           <FuenteDato
-                            fuente={item.fuente}
-                            verificado={item.verificado}
+                            estadoVerificacion={item.estadoVerificacion}
+                            fuentes={item.fuentes}
                             compacto
                           />
                         </li>
@@ -287,7 +340,7 @@ export function AyudaRecursos({
                   rel="noopener noreferrer"
                   className={clsx(styles.red, styles[red.id])}
                   aria-label={`${recursosPagina.compartirTitulo} en ${red.nombre}`}
-                  title={red.fuente}
+                  title={recursosPagina.redGenerica}
                 >
                   <Icono size={19} aria-hidden="true" />
                 </a>

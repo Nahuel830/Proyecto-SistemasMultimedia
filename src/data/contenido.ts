@@ -174,7 +174,11 @@ export const heroe = {
 
 export const fuenteDato = {
   prefijo: 'Fuente:',
+  prefijoPlural: 'Fuentes:',
+  separador: ' · ',
   verificado: 'Verificado',
+  fuenteAsignada: 'Fuente asignada',
+  enRevision: 'En revisión',
   sinVerificar: 'Sin verificar',
 } as const;
 
@@ -285,7 +289,7 @@ export const footerContenido = {
   cita: 'Pequeñas acciones, grandes cambios',
   sello: '¡Los animales también importan! ♡',
   notaDatos:
-    'Datos recopilados de fuentes oficiales; pendientes de verificación final.',
+    'Datos con fuentes asignadas y estados de verificación visibles en cada ficha.',
   enlaces: [
     { etiqueta: 'Inicio', destino: '/' },
     { etiqueta: 'Mi historia', destino: '/mi-historia' },

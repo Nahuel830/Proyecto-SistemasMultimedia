@@ -13,8 +13,8 @@
   align-items: center;
   gap: 4px;
   padding: 3px 7px;
-  color: #8a4a10;
-  background: rgba(242, 140, 40, 0.16);
+  color: var(--color-ink-muted);
+  background: rgba(15, 61, 46, 0.08);
   border-radius: var(--radius-pill);
   font-size: 0.58rem;
   font-weight: 800;
@@ -28,8 +28,29 @@
   background: var(--color-success-soft);
 }
 
+.estado.asignada {
+  color: var(--color-forest-700);
+  background: var(--color-mint-200);
+}
+
+.estado.revision {
+  color: #8a4a10;
+  background: rgba(242, 140, 40, 0.16);
+}
+
 .texto {
   min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.texto a {
+  color: var(--color-forest-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.texto a:hover {
+  color: var(--color-forest-900);
 }
 
 .compacto {

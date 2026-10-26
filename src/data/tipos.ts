@@ -1,4 +1,3 @@
-import { FUENTE_DOSSIER } from './estadisticas';
 import { imagenes } from './imagenes';
 import type { TipoMaltrato } from './types';
 
@@ -24,8 +23,8 @@ export const tiposMaltrato: readonly TipoMaltrato[] = [
     alt: 'Perro de mirada atenta que ilustra el maltrato físico',
     posicionImagen: 'center 40%',
     icono: 'fisico',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['ley700-pl', 'gaceta'],
   },
   {
     id: 'abandono',
@@ -48,8 +47,8 @@ export const tiposMaltrato: readonly TipoMaltrato[] = [
     alt: 'Perro que ilustra el abandono y la falta de un hogar seguro',
     posicionImagen: 'center 38%',
     icono: 'abandono',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['ley700-pl', 'gaceta'],
   },
   {
     id: 'negligencia',
@@ -72,8 +71,8 @@ export const tiposMaltrato: readonly TipoMaltrato[] = [
     alt: 'Gato que ilustra la falta de cuidados y la negligencia',
     posicionImagen: 'center 40%',
     icono: 'negligencia',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['ley700-pl', 'gaceta'],
   },
   {
     id: 'psicologico',
@@ -96,8 +95,8 @@ export const tiposMaltrato: readonly TipoMaltrato[] = [
     alt: 'Conejo alerta que ilustra el estrés y el maltrato psicológico',
     posicionImagen: 'center 40%',
     icono: 'psicologico',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'fuente-asignada',
+    fuentes: ['ley700-pl', 'gaceta'],
   },
   {
     id: 'explotacion',
@@ -116,13 +115,13 @@ export const tiposMaltrato: readonly TipoMaltrato[] = [
       'Reporta el maltrato en transporte o faena a SENASAG.',
     ],
     baseLegal:
-      'Ley 700, Ley 1333 (fauna silvestre) y R.A. SENASAG 0230/2024',
+      'Ley 700, Ley 1333 (fauna silvestre) y REGENSA, Capítulo 1.3 (SENASAG)',
     imagen: imagenes.tipos.explotacion,
     alt: 'Caballo que ilustra el trabajo forzado y la explotación animal',
     posicionImagen: 'center 40%',
     icono: 'explotacion',
-    fuente: FUENTE_DOSSIER,
-    verificado: false,
+    estadoVerificacion: 'discrepancia',
+    fuentes: ['ley700-pl', 'regensa-bienestar'],
   },
 ] as const;
 

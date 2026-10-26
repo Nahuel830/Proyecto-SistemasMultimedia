@@ -1,3 +1,10 @@
+import type { EstadoVerificacion, FuenteId } from './fuentes';
+
+export interface VerificacionDato {
+  readonly estadoVerificacion: EstadoVerificacion;
+  readonly fuentes: readonly FuenteId[];
+}
+
 export type IconoNavegacion =
   | 'inicio'
   | 'historia'
@@ -46,28 +53,24 @@ export interface AccesoRapido {
   readonly icono: IconoNavegacion;
 }
 
-export interface CifraBolivia {
+export interface CifraBolivia extends VerificacionDato {
   readonly id: string;
   readonly valor: string;
   readonly etiqueta: string;
   readonly detalle: string;
   readonly icono: IconoCifra;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface DatoMaltrato {
+export interface DatoMaltrato extends VerificacionDato {
   readonly id: string;
   readonly nombre: string;
   readonly descripcion: string;
   readonly porcentaje: number;
   readonly color: string;
   readonly ilustrativo: true;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface DatoAnimal {
+export interface DatoAnimal extends VerificacionDato {
   readonly id: string;
   readonly nombre: string;
   readonly porcentaje: number;
@@ -75,21 +78,17 @@ export interface DatoAnimal {
   readonly imagen?: string;
   readonly alt: string;
   readonly ilustrativo: true;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface MarcoLegalItem {
+export interface MarcoLegalItem extends VerificacionDato {
   readonly id: string;
   readonly titulo: string;
   readonly norma: string;
   readonly resumen: string;
   readonly aplicacion: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface TipoMaltrato {
+export interface TipoMaltrato extends VerificacionDato {
   readonly id: IconoTipoMaltrato;
   readonly nombre: string;
   readonly descripcion: string;
@@ -101,8 +100,6 @@ export interface TipoMaltrato {
   readonly alt: string;
   readonly posicionImagen?: string;
   readonly icono: IconoTipoMaltrato;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
 export interface OpcionJuego {
@@ -110,14 +107,12 @@ export interface OpcionJuego {
   readonly texto: string;
 }
 
-export interface PreguntaJuego {
+export interface PreguntaJuego extends VerificacionDato {
   readonly id: number;
   readonly pregunta: string;
   readonly opciones: readonly OpcionJuego[];
   readonly correctaId: string;
   readonly feedback: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
 export type CategoriaGaleria =
@@ -128,7 +123,7 @@ export type CategoriaGaleria =
   | 'aves'
   | 'otros';
 
-export interface GaleriaItem {
+export interface GaleriaItem extends VerificacionDato {
   readonly id: string;
   readonly src: string;
   readonly alt: string;
@@ -137,8 +132,6 @@ export interface GaleriaItem {
   readonly entidad: string;
   readonly descripcion: string;
   readonly categoria: CategoriaGaleria;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
 export interface CategoriaGaleriaItem {
@@ -146,12 +139,10 @@ export interface CategoriaGaleriaItem {
   readonly etiqueta: string;
 }
 
-export interface RecursoDetalle {
+export interface RecursoDetalle extends VerificacionDato {
   readonly id: string;
   readonly titulo: string;
   readonly texto: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
 export interface SeccionRecursos {
@@ -168,41 +159,33 @@ export interface AccesoRecurso {
   readonly icono: IconoRecurso;
 }
 
-export interface EnlaceSocial {
+export interface EnlaceSocial extends VerificacionDato {
   readonly id: IconoSocial;
   readonly nombre: string;
   readonly href: string;
   readonly icono: IconoSocial;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface PasoProtocolo {
+export interface PasoProtocolo extends VerificacionDato {
   readonly id: string;
   readonly titulo: string;
   readonly texto: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface LineaAtencion {
+export interface LineaAtencion extends VerificacionDato {
   readonly id: string;
   readonly nombre: string;
   readonly descripcion: string;
   readonly telefono: string;
   readonly tel: string;
   readonly whatsapp?: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
-export interface InstitucionCompetencia {
+export interface InstitucionCompetencia extends VerificacionDato {
   readonly id: string;
   readonly institucion: string;
   readonly competencia: string;
   readonly cuando: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
 export interface TelefonoRefugio {
@@ -211,15 +194,13 @@ export interface TelefonoRefugio {
   readonly tel: string;
 }
 
-export interface Refugio {
+export interface Refugio extends VerificacionDato {
   readonly id: string;
   readonly departamento: string;
   readonly nombre: string;
   readonly descripcion: string;
   readonly telefonos: readonly TelefonoRefugio[];
   readonly coordinacion?: string;
-  readonly fuente: string;
-  readonly verificado: boolean;
 }
 
 export interface EnlaceFooter {

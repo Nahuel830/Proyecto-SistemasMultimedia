@@ -75,8 +75,8 @@ export function TiposMaltrato() {
                 </p>
 
                 <FuenteDato
-                  fuente={tipo.fuente}
-                  verificado={tipo.verificado}
+                  estadoVerificacion={tipo.estadoVerificacion}
+                  fuentes={tipo.fuentes}
                   compacto
                 />
               </div>
