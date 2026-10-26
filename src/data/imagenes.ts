@@ -4,6 +4,13 @@ import conejoTresCuartos from '../assets/conejo-tres-cuartos.png';
 import referenciaConejo from '../assets/referencia_conejo.jpeg';
 import referenciaDashboard from '../assets/referencia_dashboard.png';
 
+const galeriaPropia = {
+  conejo: '/images/galeria/galeria-conejo.jpg',
+  perro: '/images/galeria/galeria-perro.jpg',
+  vaca: '/images/galeria/galeria-vaca.jpg',
+  loro: '/images/galeria/galeria-loro.jpg',
+} as const;
+
 export const imagenes = {
   referencias: {
     conejo: referenciaConejo,
@@ -23,6 +30,7 @@ export const imagenes = {
     poster: '/images/conejo-video.jpg',
   },
   galeria: {
+    propia: galeriaPropia,
     perro: '/images/perro.jpg',
     gato: '/images/gato.jpg',
     conejo: '/images/conejo-galeria.jpg',
@@ -40,7 +48,7 @@ export const imagenes = {
   },
   tipos: {
     fisico: '/images/perro-tipo.jpg',
-    abandono: '/images/perro-abandono.jpg',
+    abandono: galeriaPropia.perro,
     negligencia: '/images/gato-tipo.jpg',
     psicologico: '/images/conejo-tipo.jpg',
     explotacion: '/images/caballo-tipo.jpg',
@@ -50,7 +58,7 @@ export const imagenes = {
     gato: '/images/gato.jpg',
     conejo: '/images/conejo-galeria.jpg',
     granja: '/images/granja.jpg',
-    aves: '/images/aves.jpg',
+    aves: galeriaPropia.loro,
     otros: '/images/otros.jpg',
   },
   qr: '/qr/qr-mensaje.png',

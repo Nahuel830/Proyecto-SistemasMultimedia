@@ -8,8 +8,9 @@ import {
   Trophy,
   X,
 } from 'lucide-react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FuenteDato } from '../../components/primitives/FuenteDato';
 import { PanelHeader } from '../../components/primitives/PanelHeader';
 import { RabbitVisual } from '../../components/RabbitVisual';
 import { Button } from '../../components/primitives/Button';
@@ -17,18 +18,28 @@ import { configuracion, juegoContenido } from '../../data/contenido';
 import {
   letrasOpciones,
   preguntasJuego,
+  PREGUNTAS_POR_PARTIDA,
 } from '../../data/preguntasJuego';
-import type { ModoConejo } from '../../data/types';
+import type {
+  ModoConejo,
+  OpcionJuego,
+  PreguntaJuego,
+} from '../../data/types';
 import styles from './JuegoQuiz.module.css';
 
 interface JuegoQuizProps {
   readonly rabbitMode?: ModoConejo;
 }
 
+interface RondaPregunta {
+  readonly pregunta: PreguntaJuego;
+  readonly opciones: readonly OpcionJuego[];
+}
+
 type FaseJuego = 'inicio' | 'jugando' | 'resultado';
 
 const CLAVE_MEJOR = 'huellas-juego-mejor';
-const TOTAL = preguntasJuego.length;
+const TOTAL = PREGUNTAS_POR_PARTIDA;
 
 function leerMejor(): number {
   try {
@@ -54,8 +65,8 @@ function guardarMejor(puntos: number): void {
   }
 }
 
-function barajar(cantidad: number): number[] {
-  const orden = Array.from({ length: cantidad }, (_, indice) => indice);
+function barajar<T>(items: readonly T[]): T[] {
+  const orden = [...items];
   for (let i = orden.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
     const actual = orden[i];
@@ -72,20 +83,29 @@ export function JuegoQuiz({
   rabbitMode = configuracion.modoConejo,
 }: JuegoQuizProps) {
   const [fase, setFase] = useState<FaseJuego>('inicio');
-  const [orden, setOrden] = useState<readonly number[]>([]);
+  const [partida, setPartida] = useState<readonly RondaPregunta[]>([]);
   const [posicion, setPosicion] = useState(0);
-  const [seleccion, setSeleccion] = useState<number | null>(null);
+  const [seleccion, setSeleccion] = useState<string | null>(null);
   const [respondida, setRespondida] = useState(false);
   const [puntos, setPuntos] = useState(0);
   const [mejor, setMejor] = useState<number>(leerMejor);
   const [nuevoRecord, setNuevoRecord] = useState(false);
 
-  const indicePregunta = orden[posicion];
-  const pregunta =
-    indicePregunta === undefined ? undefined : preguntasJuego[indicePregunta];
+  const actual = partida[posicion];
+  const pregunta = actual?.pregunta;
+  const opciones = useMemo(() => actual?.opciones ?? [], [actual]);
 
   const empezar = useCallback(() => {
-    setOrden(barajar(TOTAL));
+    const elegidas = barajar(preguntasJuego).slice(
+      0,
+      Math.min(TOTAL, preguntasJuego.length),
+    );
+    const ronda = elegidas.map((preguntaElegida) => ({
+      pregunta: preguntaElegida,
+      opciones: barajar(preguntaElegida.opciones),
+    }));
+
+    setPartida(ronda);
     setPosicion(0);
     setSeleccion(null);
     setRespondida(false);
@@ -95,13 +115,13 @@ export function JuegoQuiz({
   }, []);
 
   const responder = useCallback(
-    (opcion: number) => {
+    (opcionId: string) => {
       if (respondida || !pregunta) {
         return;
       }
-      setSeleccion(opcion);
+      setSeleccion(opcionId);
       setRespondida(true);
-      if (opcion === pregunta.correcta) {
+      if (opcionId === pregunta.correctaId) {
         setPuntos((valor) => valor + 1);
       }
     },
@@ -141,9 +161,12 @@ export function JuegoQuiz({
 
       const numero = Number.parseInt(event.key, 10);
       if (numero >= 1 && numero <= 4) {
-        if (!respondida && pregunta && numero <= pregunta.opciones.length) {
+        if (!respondida && pregunta && numero <= opciones.length) {
           event.preventDefault();
-          responder(numero - 1);
+          const opcion = opciones[numero - 1];
+          if (opcion) {
+            responder(opcion.id);
+          }
         }
         return;
       }
@@ -156,10 +179,14 @@ export function JuegoQuiz({
 
     window.addEventListener('keydown', alPulsar);
     return () => window.removeEventListener('keydown', alPulsar);
-  }, [fase, respondida, pregunta, responder, siguiente]);
+  }, [fase, respondida, pregunta, opciones, responder, siguiente]);
 
-  const esCorrecta = seleccion !== null && seleccion === pregunta?.correcta;
-  const letraCorrecta = pregunta ? letrasOpciones[pregunta.correcta] : '';
+  const esCorrecta = seleccion !== null && seleccion === pregunta?.correctaId;
+  const indiceCorrecto = opciones.findIndex(
+    (opcion) => opcion.id === pregunta?.correctaId,
+  );
+  const letraCorrecta =
+    indiceCorrecto >= 0 ? (letrasOpciones[indiceCorrecto] ?? '') : '';
   const feedback = !respondida
     ? juegoContenido.invitacion
     : esCorrecta
@@ -278,9 +305,9 @@ export function JuegoQuiz({
                 role="group"
                 aria-label={juegoContenido.opcionesAria}
               >
-                {pregunta.opciones.map((opcion, opcionIndice) => {
-                  const esLaCorrecta = opcionIndice === pregunta.correcta;
-                  const esLaElegida = opcionIndice === seleccion;
+                {opciones.map((opcion, opcionIndice) => {
+                  const esLaCorrecta = opcion.id === pregunta.correctaId;
+                  const esLaElegida = opcion.id === seleccion;
                   const estado = respondida
                     ? esLaCorrecta
                       ? styles.correcta
@@ -291,19 +318,19 @@ export function JuegoQuiz({
 
                   return (
                     <button
-                      key={opcion}
+                      key={opcion.id}
                       type="button"
                       className={`${styles.opcion} ${estado ?? ''}`}
-                      onClick={() => responder(opcionIndice)}
+                      onClick={() => responder(opcion.id)}
                       disabled={respondida}
-                      aria-label={`${letrasOpciones[opcionIndice] ?? ''}. ${opcion}`}
+                      aria-label={`${letrasOpciones[opcionIndice] ?? ''}. ${opcion.texto}`}
                       aria-pressed={esLaElegida}
                       aria-keyshortcuts={String(opcionIndice + 1)}
                     >
                       <span className={styles.letra} aria-hidden="true">
                         {letrasOpciones[opcionIndice]}
                       </span>
-                      <span className={styles.opcionTexto}>{opcion}</span>
+                      <span className={styles.opcionTexto}>{opcion.texto}</span>
                       <span className={styles.tecla} aria-hidden="true">
                         {opcionIndice + 1}
                       </span>
@@ -325,6 +352,15 @@ export function JuegoQuiz({
                   );
                 })}
               </div>
+
+              {respondida && (
+                <FuenteDato
+                  fuente={pregunta.fuente}
+                  verificado={pregunta.verificado}
+                  compacto
+                  className={styles.fuentePregunta}
+                />
+              )}
 
               <p className={styles.teclado}>{juegoContenido.teclado}</p>
 

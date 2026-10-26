@@ -1,7 +1,7 @@
 import { configuracion } from '../data/contenido';
 import { Hero } from '../modules/hero/Hero';
-import { Estadisticas } from '../modules/estadisticas/Estadisticas';
-import { TiposMaltrato } from '../modules/tipos/TiposMaltrato';
+import { EstadisticasTeaser } from '../modules/estadisticas/EstadisticasTeaser';
+import { TiposMaltratoTeaser } from '../modules/tipos/TiposMaltratoTeaser';
 import { FraseConejo } from '../modules/frase/FraseConejo';
 import { HistoriaTarjeta } from '../modules/historia/HistoriaTarjeta';
 import { JuegoTeaser } from '../modules/juego/JuegoTeaser';
@@ -14,8 +14,8 @@ export function InicioPage() {
     <div id="inicio" className={`${styles.pagina} contenedor`}>
       <div className={styles.superior}>
         <Hero rabbitMode={configuracion.modoConejo} />
-        <Estadisticas />
-        <TiposMaltrato />
+        <EstadisticasTeaser />
+        <TiposMaltratoTeaser />
         <FraseConejo rabbitMode={configuracion.modoConejo} />
       </div>
 

@@ -6,8 +6,6 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { datosPorAnimal } from '../../data/estadisticas';
-import { estadisticasContenido } from '../../data/contenido';
 import type { DatoAnimal } from '../../data/types';
 import styles from './BarrasChart.module.css';
 
@@ -52,13 +50,7 @@ function TickAnimal({ x = 0, y = 0, payload }: TickProps) {
 }
 
 function FormaBarra(props: FormaBarraProps) {
-  const {
-    x = 0,
-    y = 0,
-    width = 0,
-    height = 0,
-    payload,
-  } = props;
+  const { x = 0, y = 0, width = 0, height = 0, payload } = props;
 
   if (!payload) {
     return null;
@@ -115,16 +107,18 @@ function FormaBarra(props: FormaBarraProps) {
   );
 }
 
-export function BarrasChart() {
+interface BarrasChartProps {
+  readonly datos: readonly DatoAnimal[];
+  readonly ariaLabel: string;
+  readonly caption: string;
+}
+
+export function BarrasChart({ datos, ariaLabel, caption }: BarrasChartProps) {
   return (
-    <div
-      className={styles.wrap}
-      role="img"
-      aria-label={estadisticasContenido.ariaAnimales}
-    >
+    <div className={styles.wrap} role="img" aria-label={ariaLabel}>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          data={[...datosPorAnimal]}
+          data={[...datos]}
           margin={{ top: 68, right: 4, left: 4, bottom: 0 }}
           barCategoryGap="20%"
           accessibilityLayer
@@ -161,7 +155,7 @@ export function BarrasChart() {
       </ResponsiveContainer>
 
       <table className="solo-lectores">
-        <caption>{estadisticasContenido.captionTabla}</caption>
+        <caption>{caption}</caption>
         <thead>
           <tr>
             <th scope="col">Animal</th>
@@ -169,7 +163,7 @@ export function BarrasChart() {
           </tr>
         </thead>
         <tbody>
-          {datosPorAnimal.map((dato) => (
+          {datos.map((dato) => (
             <tr key={dato.id}>
               <th scope="row">{dato.nombre}</th>
               <td>{dato.porcentaje}%</td>

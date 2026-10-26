@@ -5,6 +5,7 @@ import {
   Facebook,
   FolderOpen,
   Gamepad2,
+  Gavel,
   Heart,
   House,
   Image,
@@ -14,14 +15,18 @@ import {
   MessageCircle,
   Music2,
   PawPrint,
+  Scale,
+  ScrollText,
   ShieldAlert,
   ShieldCheck,
+  Siren,
   Stethoscope,
   TriangleAlert,
   Youtube,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type {
+  IconoCifra,
   IconoNavegacion,
   IconoRecurso,
   IconoSocial,
@@ -37,6 +42,13 @@ export const iconosNavegacion: Record<IconoNavegacion, LucideIcon> = {
   galeria: Image,
   juego: Gamepad2,
   recursos: FolderOpen,
+};
+
+export const iconosCifras: Record<IconoCifra, LucideIcon> = {
+  casos: Siren,
+  sentencias: Gavel,
+  pena: Scale,
+  norma: ScrollText,
 };
 
 export const iconosTipos: Record<IconoTipoMaltrato, LucideIcon> = {

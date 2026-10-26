@@ -28,6 +28,8 @@ export type IconoSocial =
   | 'youtube'
   | 'whatsapp';
 
+export type IconoCifra = 'casos' | 'sentencias' | 'pena' | 'norma';
+
 export type ModoConejo = 'image' | '3d';
 
 export interface EnlaceNavegacion {
@@ -44,12 +46,25 @@ export interface AccesoRapido {
   readonly icono: IconoNavegacion;
 }
 
+export interface CifraBolivia {
+  readonly id: string;
+  readonly valor: string;
+  readonly etiqueta: string;
+  readonly detalle: string;
+  readonly icono: IconoCifra;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
 export interface DatoMaltrato {
   readonly id: string;
   readonly nombre: string;
   readonly descripcion: string;
   readonly porcentaje: number;
   readonly color: string;
+  readonly ilustrativo: true;
+  readonly fuente: string;
+  readonly verificado: boolean;
 }
 
 export interface DatoAnimal {
@@ -59,23 +74,49 @@ export interface DatoAnimal {
   readonly color: string;
   readonly imagen: string;
   readonly alt: string;
+  readonly ilustrativo: true;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
+export interface MarcoLegalItem {
+  readonly id: string;
+  readonly titulo: string;
+  readonly norma: string;
+  readonly resumen: string;
+  readonly aplicacion: string;
+  readonly fuente: string;
+  readonly verificado: boolean;
 }
 
 export interface TipoMaltrato {
   readonly id: IconoTipoMaltrato;
   readonly nombre: string;
   readonly descripcion: string;
+  readonly definicion: string;
+  readonly senales: readonly string[];
+  readonly acciones: readonly string[];
+  readonly baseLegal: string;
   readonly imagen: string;
   readonly alt: string;
   readonly icono: IconoTipoMaltrato;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
+export interface OpcionJuego {
+  readonly id: string;
+  readonly texto: string;
 }
 
 export interface PreguntaJuego {
   readonly id: number;
   readonly pregunta: string;
-  readonly opciones: readonly string[];
-  readonly correcta: number;
+  readonly opciones: readonly OpcionJuego[];
+  readonly correctaId: string;
   readonly feedback: string;
+  readonly fuente: string;
+  readonly verificado: boolean;
 }
 
 export type CategoriaGaleria =
@@ -91,8 +132,12 @@ export interface GaleriaItem {
   readonly src: string;
   readonly alt: string;
   readonly titulo: string;
+  readonly caso: string;
+  readonly entidad: string;
   readonly descripcion: string;
   readonly categoria: CategoriaGaleria;
+  readonly fuente: string;
+  readonly verificado: boolean;
 }
 
 export interface CategoriaGaleriaItem {
@@ -104,7 +149,8 @@ export interface RecursoDetalle {
   readonly id: string;
   readonly titulo: string;
   readonly texto: string;
-  readonly pendiente?: boolean;
+  readonly fuente: string;
+  readonly verificado: boolean;
 }
 
 export interface SeccionRecursos {
@@ -126,6 +172,53 @@ export interface EnlaceSocial {
   readonly nombre: string;
   readonly href: string;
   readonly icono: IconoSocial;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
+export interface PasoProtocolo {
+  readonly id: string;
+  readonly titulo: string;
+  readonly texto: string;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
+export interface LineaAtencion {
+  readonly id: string;
+  readonly nombre: string;
+  readonly descripcion: string;
+  readonly telefono: string;
+  readonly tel: string;
+  readonly whatsapp?: string;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
+export interface InstitucionCompetencia {
+  readonly id: string;
+  readonly institucion: string;
+  readonly competencia: string;
+  readonly cuando: string;
+  readonly fuente: string;
+  readonly verificado: boolean;
+}
+
+export interface TelefonoRefugio {
+  readonly etiqueta: string;
+  readonly numero: string;
+  readonly tel: string;
+}
+
+export interface Refugio {
+  readonly id: string;
+  readonly departamento: string;
+  readonly nombre: string;
+  readonly descripcion: string;
+  readonly telefonos: readonly TelefonoRefugio[];
+  readonly coordinacion?: string;
+  readonly fuente: string;
+  readonly verificado: boolean;
 }
 
 export interface EnlaceFooter {

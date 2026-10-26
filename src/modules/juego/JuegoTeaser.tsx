@@ -28,13 +28,13 @@ export function JuegoTeaser() {
             <ul className={styles.opciones}>
               {muestra.opciones.slice(0, 3).map((opcion, opcionIndice) => (
                 <li
-                  key={opcion}
+                  key={opcion.id}
                   className={opcionIndice === 0 ? styles.activa : undefined}
                 >
                   <span className={styles.letra} aria-hidden="true">
                     {letrasOpciones[opcionIndice]}
                   </span>
-                  <span className={styles.texto}>{opcion}</span>
+                  <span className={styles.texto}>{opcion.texto}</span>
                 </li>
               ))}
             </ul>

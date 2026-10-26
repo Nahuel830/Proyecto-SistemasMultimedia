@@ -222,6 +222,10 @@
   padding: 13px 4px 0;
 }
 
+.ficha {
+  max-width: 78ch;
+}
+
 .pieFoto strong {
   color: var(--color-mint-200);
   font-family: var(--font-hand);
@@ -235,6 +239,25 @@
   color: rgba(244, 239, 224, 0.72);
   font-size: 0.82rem;
   line-height: 1.45;
+}
+
+.pieFoto b {
+  color: var(--color-mint-200);
+  font-weight: 800;
+}
+
+.caso {
+  color: var(--color-cream-50) !important;
+  font-weight: 600;
+}
+
+.entidad {
+  color: rgba(211, 244, 221, 0.82) !important;
+}
+
+.fuenteFicha {
+  margin-top: 7px;
+  color: rgba(244, 239, 224, 0.55);
 }
 
 .pieFoto span {

@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
+import { FuenteDato } from '../../components/primitives/FuenteDato';
 import { IconButton } from '../../components/primitives/IconButton';
 import { Modal } from '../../components/primitives/Modal';
 import { galeriaPagina } from '../../data/galeria';
@@ -80,9 +81,21 @@ export function Lightbox({
           </div>
 
           <div className={styles.pieFoto}>
-            <div>
+            <div className={styles.ficha}>
               <strong>{item.titulo}</strong>
+              <p className={styles.caso}>
+                <b>{galeriaPagina.caso}:</b> {item.caso}
+              </p>
               <p>{item.descripcion}</p>
+              <p className={styles.entidad}>
+                <b>{galeriaPagina.entidad}:</b> {item.entidad}
+              </p>
+              <FuenteDato
+                fuente={item.fuente}
+                verificado={item.verificado}
+                compacto
+                className={styles.fuenteFicha}
+              />
             </div>
             <span aria-live="polite">
               {indice + 1} {galeriaPagina.contador} {items.length}

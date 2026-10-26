@@ -1,14 +1,24 @@
-import { PagePlaceholder } from '../components/PagePlaceholder';
-import { paginasPlaceholder } from '../data/contenido';
+import { HeartHandshake } from 'lucide-react';
+import { PageHero } from '../components/PageHero';
+import { ayudaPagina } from '../data/recursos';
+import { AyudaRecursos } from '../modules/ayuda/AyudaRecursos';
+import styles from './Pagina.module.css';
 
 export function AyudaPage() {
-  const pagina = paginasPlaceholder.ayuda;
   return (
-    <PagePlaceholder
-      eyebrow={pagina.eyebrow}
-      title={pagina.titulo}
-      description={pagina.descripcion}
-      icon={pagina.icono}
-    />
+    <div className={`${styles.pagina} contenedor`}>
+      <PageHero
+        titleId="ayuda-pagina-titulo"
+        eyebrow={ayudaPagina.eyebrow}
+        title={ayudaPagina.titulo}
+        subtitle={ayudaPagina.subtitulo}
+        frase={ayudaPagina.frase}
+        icon={<HeartHandshake size={36} />}
+      />
+
+      <div className={styles.bloque}>
+        <AyudaRecursos mostrarGuias={false} />
+      </div>
+    </div>
   );
 }

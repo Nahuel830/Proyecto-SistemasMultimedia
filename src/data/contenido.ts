@@ -24,13 +24,13 @@ export const navegacion: readonly EnlaceNavegacion[] = [
   {
     id: 'estadisticas',
     etiqueta: 'Estadísticas',
-    destino: '/#estadisticas',
+    destino: '/estadisticas',
     icono: 'estadisticas',
   },
   {
     id: 'tipos',
     etiqueta: 'Tipos de maltrato',
-    destino: '/#tipos-maltrato',
+    destino: '/tipos-de-maltrato',
     icono: 'tipos',
   },
   { id: 'ayuda', etiqueta: 'Ayuda', destino: '/ayuda', icono: 'ayuda' },
@@ -85,15 +85,21 @@ export const indiceBusqueda: readonly IndiceBusqueda[] = [
   },
   {
     etiqueta: 'Estadísticas',
-    descripcion: 'Cifras del maltrato animal',
-    destino: '/#estadisticas',
-    claves: ['estadisticas', 'cifras', 'porcentajes', 'datos', 'grafico'],
+    descripcion: '87 casos de biocidio y cifras de Bolivia',
+    destino: '/estadisticas',
+    claves: ['estadisticas', 'cifras', 'biocidio', 'bolivia', 'datos', 'grafico'],
   },
   {
     etiqueta: 'Tipos de maltrato',
     descripcion: 'Físico, abandono, negligencia y más',
-    destino: '/#tipos-maltrato',
+    destino: '/tipos-de-maltrato',
     claves: ['tipos', 'maltrato', 'fisico', 'abandono', 'negligencia'],
+  },
+  {
+    etiqueta: 'Ayuda y denuncia',
+    descripcion: 'POFOMA, líneas oficiales y refugios',
+    destino: '/ayuda',
+    claves: ['ayuda', 'denuncia', 'pofoma', 'telefono', 'refugios'],
   },
   {
     etiqueta: 'Galería',
@@ -142,13 +148,13 @@ export const heroe = {
     {
       id: 'acceso-estadisticas',
       etiqueta: 'Estadísticas',
-      destino: '/#estadisticas',
+      destino: '/estadisticas',
       icono: 'estadisticas',
     },
     {
       id: 'acceso-tipos',
       etiqueta: 'Tipos de maltrato',
-      destino: '/#tipos-maltrato',
+      destino: '/tipos-de-maltrato',
       icono: 'tipos',
     },
     {
@@ -166,26 +172,10 @@ export const heroe = {
   ] satisfies readonly AccesoRapido[],
 } as const;
 
-export const estadisticasContenido = {
-  id: 'estadisticas',
-  titulo: 'Las cifras también hablan',
-  subtitulo: 'El maltrato animal es una realidad. Conoce los porcentajes:',
-  ariaDona: 'Distribución porcentual de los tipos de maltrato animal',
-  banner:
-    'En total, el 100% de los casos representa una forma de violencia hacia los animales.',
-  tituloAnimales: 'Porcentaje de maltrato según el tipo de animal',
-  ariaAnimales:
-    'Gráfico de barras del porcentaje de maltrato según el tipo de animal',
-  captionTabla: 'Porcentaje de maltrato por tipo de animal',
-  leyendaTitulo: 'Tipos de maltrato',
-  nota: 'Datos de demostración. Sustituye los valores en src/data/estadisticas.ts.',
-} as const;
-
-export const tiposContenido = {
-  id: 'tipos-maltrato',
-  titulo: 'Tipos de maltrato',
-  subtitulo: 'El maltrato animal puede ser:',
-  ariaLista: 'Tipos de maltrato animal',
+export const fuenteDato = {
+  prefijo: 'Fuente:',
+  verificado: 'Verificado',
+  sinVerificar: 'Sin verificar',
 } as const;
 
 export const fraseContenido = {
@@ -241,14 +231,15 @@ export const juegoContenido = {
   ariaImagen: 'Conejo acompañando el quiz',
   ariaPuntos: 'Puntos acumulados',
   ariaBarra: 'Progreso del quiz',
-  teclado: 'Usa las teclas 1 a 4 para responder y Enter para continuar.',
+  teclado: 'Usa las teclas 1 a 3 para responder y Enter para continuar.',
   inicio: {
     titulo: '¿Listo para poner a prueba lo que sabes?',
     texto:
-      'Responde 10 preguntas de opción múltiple sobre maltrato animal y tenencia responsable. El orden cambia en cada partida y verás una explicación después de cada respuesta.',
+      'Cada partida elige 5 de 10 preguntas sobre la normativa boliviana. Las preguntas y las opciones cambian de orden, y verás una explicación después de cada respuesta.',
     detalles: [
-      '10 preguntas',
-      'Orden aleatorio',
+      '5 preguntas por partida',
+      '10 preguntas en el banco',
+      'Preguntas y opciones aleatorias',
       'Explicación en cada respuesta',
     ],
     boton: 'Empezar',
@@ -263,19 +254,19 @@ export const juegoContenido = {
     nuevoRecord: '¡Nuevo récord!',
     mensajes: [
       {
-        minimo: 9,
+        minimo: 5,
         titulo: '¡Eres una voz experta!',
         texto:
           'Sabes muy bien cómo proteger a los animales. Comparte lo que aprendiste.',
       },
       {
-        minimo: 7,
+        minimo: 4,
         titulo: '¡Muy buen trabajo!',
         texto:
           'Tienes una base sólida. Repasa las respuestas y vuelve a intentarlo.',
       },
       {
-        minimo: 5,
+        minimo: 3,
         titulo: 'Vas por buen camino',
         texto:
           'Cada respuesta te acerca a cuidar mejor a los animales. Sigue aprendiendo.',
@@ -297,6 +288,8 @@ export const footerContenido = {
     { etiqueta: 'Inicio', destino: '/' },
     { etiqueta: 'Mi historia', destino: '/mi-historia' },
     { etiqueta: 'Estadísticas', destino: '/estadisticas' },
+    { etiqueta: 'Tipos de maltrato', destino: '/tipos-de-maltrato' },
+    { etiqueta: 'Ayuda', destino: '/ayuda' },
     { etiqueta: 'Galería', destino: '/galeria' },
     { etiqueta: 'Juego', destino: '/juego' },
     { etiqueta: 'Recursos', destino: '/recursos' },
@@ -315,54 +308,4 @@ export const placeholderComun = {
   volver: 'Volver al inicio',
 } as const;
 
-export const paginasPlaceholder = {
-  miHistoria: {
-    eyebrow: 'Próximamente',
-    titulo: 'Mi historia',
-    descripcion:
-      'Aquí compartiremos la historia del conejo y las voces que inspiran esta revista.',
-    icono: 'historia',
-  },
-  estadisticas: {
-    eyebrow: 'Próximamente',
-    titulo: 'Estadísticas',
-    descripcion:
-      'Ampliaremos los datos, fuentes y comparativas sobre el maltrato animal.',
-    icono: 'estadisticas',
-  },
-  tiposMaltrato: {
-    eyebrow: 'Próximamente',
-    titulo: 'Tipos de maltrato',
-    descripcion:
-      'Cada tipo de maltrato tendrá su propia ficha con señales de alerta y recursos.',
-    icono: 'tipos',
-  },
-  ayuda: {
-    eyebrow: 'Próximamente',
-    titulo: 'Ayuda',
-    descripcion:
-      'Encontrarás guías de denuncia, adopción responsable y apoyo profesional.',
-    icono: 'ayuda',
-  },
-  galeria: {
-    eyebrow: 'Próximamente',
-    titulo: 'Galería',
-    descripcion:
-      'Una galería completa con historias, retratos y finales felices.',
-    icono: 'galeria',
-  },
-  juego: {
-    eyebrow: 'Próximamente',
-    titulo: 'Juego',
-    descripcion:
-      'Más preguntas, niveles y retos para aprender jugando en familia.',
-    icono: 'juego',
-  },
-  recursos: {
-    eyebrow: 'Próximamente',
-    titulo: 'Recursos',
-    descripcion:
-      'Documentos, contactos de refugios y materiales descargables.',
-    icono: 'recursos',
-  },
-} as const;
+
