@@ -1,5 +1,27 @@
 # Decisiones del proyecto
 
+## Módulos Juego, Galería y Recursos (2026-10-25)
+
+- **Un módulo por página**: `JuegoQuiz`, `Galeria` y `AyudaRecursos` salieron de Inicio. Ahora viven en `/juego`, `/galeria` y `/recursos`, envueltos por `PageHero`.
+- **Teasers en Inicio**: `JuegoTeaser`, `GaleriaTeaser` y `RecursosTeaser` usan el componente compartido `TeaserCard` (misma altura, estructura y CTA que `HistoriaTarjeta`). La fila inferior mantiene 4 tarjetas sin huecos.
+- **Juego**: 10 preguntas educativas en `src/data/preguntasJuego.ts`, orden aleatorio por partida, 4 opciones, explicación tras responder, barra de progreso, pantalla de inicio y resultados con mensaje según puntaje. El mejor puntaje se guarda en `localStorage` (`huellas-juego-mejor`) con `try/catch`. Teclado: 1-4 responde, Enter avanza.
+- **Galería**: `GaleriaGrid` y `Lightbox` se separaron dentro de `src/modules/galeria/`. Filtros por categoría (Todos, Perros, Gatos, Conejos, Animales de granja, Aves, Otros), grid responsive, `loading="lazy"`, lightbox con flechas y Esc, pie de foto y frase manuscrita. Datos e imágenes en `src/data/galeria.ts`.
+- **Recursos**: secciones Adopta, Denuncia, Organizaciones, Consejos de cuidado (perros, gatos, conejos) y Comparte esta revista. Enlaces externos con `target="_blank" rel="noopener noreferrer"`.
+- **Navegación**: menú, buscador, accesos rápidos y footer apuntan a `/juego`, `/galeria` y `/recursos`; `Ayuda` apunta a `/ayuda`, que sigue como placeholder.
+- **Verificación**: `npm run build` OK. `/`, `/juego`, `/galeria`, `/recursos` y `/ayuda` responden 200 en `vite preview`. `npm run lint` sin errores nuevos; solo avisos del Draco vendorizado.
+
+### Datos pendientes de verificar y completar
+
+Todos los datos de contacto e instituciones están como **«Por completar»** en `src/data/recursos.ts`. No inventar ni publicar hasta verificarlos:
+
+- Autoridad local o línea de protección animal para denuncias (`denuncia-reporta`).
+- Refugio local: nombre, dirección y contacto (`organizacion-refugio`).
+- Organización de protección animal: nombre, cobertura y contacto (`organizacion-proteccion`).
+- Veterinaria de apoyo: nombre, dirección y contacto (`organizacion-veterinaria`).
+- Contacto del refugio o rescatista para el proceso de adopción (`adopta-proceso`).
+- URLs reales de Facebook, Instagram, TikTok, YouTube y WhatsApp en `redesSociales`.
+- Revisar los textos legales/generales de denuncia con una fuente oficial de la zona.
+
 ## Verificación final (2026-10-23)
 
 - `npm run build` (`tsc -b` + `vite build`) termina **sin errores de TypeScript**.
@@ -22,8 +44,8 @@
 - **Un módulo por sección** en `src/modules/`, con estilos CSS Modules co-ubicados. Los tokens globales viven en `src/styles/tokens.css` y `src/styles/global.css`.
 - **Datos tipados** en `src/data/`. Las secciones no contienen cifras, preguntas, recursos ni textos de interfaz hardcodeados. Los textos generales están en `src/data/contenido.ts`.
 - **Primitivas reutilizables**: `Button`, `IconButton`, `Card`, `Spinner`, `Modal`, `EmptyState` y `PanelHeader`.
-- **Mi historia ya tiene página propia** (`/mi-historia`). Estadísticas, Tipos de maltrato, Ayuda, Galería, Juego y Recursos siguen como rutas placeholder.
-- La navegación superior enlaza al dashboard y a `/mi-historia`; el resto de secciones mantiene hashes y scroll suave. Las rutas directas de las secciones pendientes quedan disponibles para la siguiente fase.
+- **Mi historia, Juego, Galería y Recursos ya tienen página propia**. Estadísticas, Tipos de maltrato y Ayuda siguen como rutas placeholder.
+- La navegación superior enlaza a `/mi-historia`, `/juego`, `/galeria`, `/recursos` y `/ayuda`; Estadísticas y Tipos de maltrato mantienen hashes y scroll suave dentro de Inicio.
 
 ## Dashboard
 
@@ -54,8 +76,9 @@
 
 - **Audio de Mi historia**: usa `/audio/mensaje-conejo.wav`, generado como voz de demostración con la voz española de Windows. El botón del hero solo navega a `/mi-historia`; la reproducción vive en esa página. Reemplazar por una grabación real.
 - **Video**: reproductor HTML5 personalizado con controles de reproducción, progreso, volumen, ajustes y pantalla completa. Vive en `/mi-historia`; en Inicio queda la tarjeta compacta “Mi historia”. Si no existe `/video/mensaje-conejo.mp4`, funciona en modo demostración con el póster del conejo. Reemplazar por el video real.
-- **Quiz**: 5 preguntas funcionales. El estado inicial replica la referencia: pregunta 2 de 5, opción B correcta, 1/5 puntos y feedback del conejo. El botón de reinicio permite empezar desde la pregunta 1.
-- **Galería**: grid 3x3 con hover, lightbox accesible, navegación con flechas y teclado.
+- **Quiz**: página `/juego` con pantalla de inicio, 10 preguntas en orden aleatorio, explicación tras cada respuesta, barra de progreso, resultados y mejor puntaje persistido en `localStorage`. Teclado 1-4 y Enter. El botón «Ver recursos» navega a `/recursos`.
+- **Galería**: página `/galeria` con filtros por categoría, grid responsive con carga diferida, lightbox accesible con flechas/Esc y pies de foto. La frase manuscrita cierra la sección.
+- **Recursos**: página `/recursos` con guías de adopción, denuncia y cuidado, organizaciones con datos provisionales y enlaces sociales genéricos.
 - **Buscador**: índice local de secciones con resultados navegables. No consulta un backend.
 - **Redes sociales**: enlaces genéricos a las plataformas. Sustituir por las cuentas reales.
 
@@ -90,6 +113,19 @@
 - `public/images/perro-tipo.jpg`, `gato-tipo.jpg`, `conejo-tipo.jpg`, `caballo-tipo.jpg` — miniaturas de la lista de tipos de maltrato.
 - `public/images/conejo-galeria.jpg`, `conejo-video.jpg`, `conejo-panel.jpg` — imágenes derivadas del conejo; se pueden reemplazar por renders finales.
 
+### Fotografías reales de la galería
+
+Reemplazar los placeholders manteniendo estos nombres (`public/images/`):
+
+- Perros: `perro.jpg`, `perro-2.jpg`, `perro-abandono.jpg`.
+- Gatos: `gato.jpg`, `gato-2.jpg`.
+- Conejos: `conejo-galeria.jpg`, `conejo-panel.jpg`.
+- Animales de granja: `vaca.jpg`, `granja.jpg`, `caballo.jpg`.
+- Aves: `paloma.jpg`, `aves.jpg`.
+- Otros: `ojo.jpg`, `otros.jpg`.
+
+La galería usa 14 imágenes con sus categorías en `src/data/galeria.ts`; si se agregan fotos nuevas, actualizar ese archivo y los `alt`/pies de foto.
+
 ### Multimedia
 
 - `public/audio/mensaje-conejo.wav` — reemplazar por una grabación real (o adaptar la ruta en `src/data/imagenes.ts` si se usa otro formato).
@@ -118,17 +154,18 @@
 | Tipos de maltrato | Completo (contenido demo) | 5 fichas resumidas con imagen provisional. |
 | Frase del conejo | Completo | Cita ilustrada. |
 | Video | Completo en modo demo | Vive en `/mi-historia`; falta el MP4 real. |
-| Quiz | Completo | 5 preguntas, feedback y puntaje. |
-| Galería | Completo | Grid + lightbox accesible. |
-| Ayuda y redes | Completo (enlaces demo) | URLs genéricas a sustituir. |
-| Páginas independientes | Placeholder (6) | Estadísticas, Tipos, Ayuda, Galería, Juego y Recursos; Mi historia ya es página completa. |
+| Juego | Completo | Página `/juego`: 10 preguntas, orden aleatorio, explicación, progreso, resultados y mejor puntaje en `localStorage`. |
+| Galería | Completo | Página `/galeria`: filtros, grid responsive, carga diferida, lightbox accesible y pies de foto. |
+| Recursos | Completo (datos por completar) | Página `/recursos`: Adopta, Denuncia, Organizaciones, Consejos y Comparte. Contactos e instituciones marcados «Por completar». |
+| Páginas independientes | Placeholder (3) | Estadísticas, Tipos de maltrato y Ayuda. Mi historia, Juego, Galería y Recursos ya son páginas completas. |
 
 ## Pendiente para las siguientes fases
 
-- Páginas completas de las secciones restantes (Estadísticas, Tipos, Ayuda, Galería, Juego y Recursos).
+- Páginas completas de las secciones restantes (Estadísticas, Tipos de maltrato y Ayuda).
 - Sustituir los textos demo de Mi historia por el relato definitivo.
 - Buscador con contenido real o backend.
 - Reproductor de audio con transcripción.
-- Galería ampliada con filtros y relatos.
+- Reemplazar las fotos provisionales de la galería y ampliar los relatos.
+- Completar y verificar los contactos, organizaciones y redes de `src/data/recursos.ts`.
 - Integración del GLB final y clips de animación.
 - Analítica y metadatos Open Graph.
