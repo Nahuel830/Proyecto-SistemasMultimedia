@@ -1,0 +1,9 @@
+.pagina {
+  padding-top: clamp(18px, 2.2vw, 32px);
+  padding-bottom: clamp(30px, 4vw, 58px);
+  scroll-margin-top: var(--header-height);
+}
+
+.bloque {
+  margin-top: clamp(18px, 2.4vw, 30px);
+}

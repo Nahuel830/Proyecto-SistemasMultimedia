@@ -35,7 +35,7 @@ export const navegacion: readonly EnlaceNavegacion[] = [
   },
   { id: 'ayuda', etiqueta: 'Ayuda', destino: '/#ayuda', icono: 'ayuda' },
   { id: 'galeria', etiqueta: 'Galería', destino: '/#galeria', icono: 'galeria' },
-  { id: 'juego', etiqueta: 'Juego', destino: '/#juego', icono: 'juego' },
+  { id: 'juego', etiqueta: 'Juego', destino: '/juego', icono: 'juego' },
   {
     id: 'recursos',
     etiqueta: 'Recursos',
@@ -104,7 +104,7 @@ export const indiceBusqueda: readonly IndiceBusqueda[] = [
   {
     etiqueta: 'Juego',
     descripcion: 'Quiz para aprender jugando',
-    destino: '/#juego',
+    destino: '/juego',
     claves: ['juego', 'quiz', 'preguntas', 'prevencion', 'adoptar'],
   },
   {
@@ -227,24 +227,66 @@ export const juegoContenido = {
   preguntaDe: 'de',
   puntos: 'Puntos',
   siguiente: 'Siguiente',
-  reiniciar: 'Reiniciar',
-  reiniciarAria: 'Reiniciar el quiz desde la primera pregunta',
+  verResultados: 'Ver resultados',
+  jugarDeNuevo: 'Jugar de nuevo',
+  verRecursos: 'Ver recursos',
   correcta: '¡Muy bien!',
   incorrecta: 'Casi...',
   respuestaCorrecta: 'Respuesta correcta',
   respuestaIncorrecta: 'Respuesta incorrecta',
   respuestaEra: 'La respuesta correcta era',
   opcionesAria: 'Opciones de respuesta',
-  resultadoTitulo: '¡Terminaste el quiz!',
-  resultadoTexto: 'Aprendiste algo nuevo y eso ya es una forma de ayudar.',
-  resultadoAccion: 'Jugar de nuevo',
   invitacion: 'Elige la opción que más ayuda a los animales.',
   ariaGlobo: 'Mensaje del conejo',
   ariaImagen: 'Conejo acompañando el quiz',
   ariaPuntos: 'Puntos acumulados',
-  inicial: {
-    indice: 1,
-    puntos: 1,
+  ariaBarra: 'Progreso del quiz',
+  teclado: 'Usa las teclas 1 a 4 para responder y Enter para continuar.',
+  inicio: {
+    titulo: '¿Listo para poner a prueba lo que sabes?',
+    texto:
+      'Responde 10 preguntas de opción múltiple sobre maltrato animal y tenencia responsable. El orden cambia en cada partida y verás una explicación después de cada respuesta.',
+    detalles: [
+      '10 preguntas',
+      'Orden aleatorio',
+      'Explicación en cada respuesta',
+    ],
+    boton: 'Empezar',
+    ariaBoton: 'Empezar la partida del quiz',
+    mejor: 'Mejor puntaje',
+    sinMejor: 'Aún no hay récord',
+  },
+  resultado: {
+    titulo: 'Resultado final',
+    aciertos: 'aciertos',
+    mejor: 'Mejor puntaje',
+    nuevoRecord: '¡Nuevo récord!',
+    mensajes: [
+      {
+        minimo: 9,
+        titulo: '¡Eres una voz experta!',
+        texto:
+          'Sabes muy bien cómo proteger a los animales. Comparte lo que aprendiste.',
+      },
+      {
+        minimo: 7,
+        titulo: '¡Muy buen trabajo!',
+        texto:
+          'Tienes una base sólida. Repasa las respuestas y vuelve a intentarlo.',
+      },
+      {
+        minimo: 5,
+        titulo: 'Vas por buen camino',
+        texto:
+          'Cada respuesta te acerca a cuidar mejor a los animales. Sigue aprendiendo.',
+      },
+      {
+        minimo: 0,
+        titulo: 'Sigue aprendiendo',
+        texto:
+          'Aprender es el primer paso para ayudar. Juega otra vez y visita los recursos.',
+      },
+    ],
   },
 } as const;
 
