@@ -1,0 +1,62 @@
+.accesos {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  height: 100%;
+  padding: 10px;
+  color: var(--color-cream-50);
+  background:
+    radial-gradient(circle at 84% 14%, rgba(127, 217, 154, 0.18), transparent 48%),
+    var(--color-forest-900);
+  border-radius: var(--radius-sm);
+}
+
+.accesos li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 5px 9px 5px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+}
+
+.icono {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  color: var(--color-forest-950);
+  background: var(--color-mint-400);
+  border-radius: 50%;
+}
+
+.etiqueta {
+  overflow: hidden;
+  font-size: clamp(0.56rem, 0.62vw, 0.68rem);
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .accesos {
+    gap: 8px;
+    padding: 13px;
+  }
+
+  .accesos li {
+    min-height: 40px;
+  }
+
+  .etiqueta {
+    font-size: 0.8rem;
+  }
+
+  .icono {
+    width: 28px;
+    height: 28px;
+  }
+}

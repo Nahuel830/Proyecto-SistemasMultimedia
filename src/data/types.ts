@@ -100,12 +100,25 @@ export interface CategoriaGaleriaItem {
   readonly etiqueta: string;
 }
 
-export interface RecursoItem {
+export interface RecursoDetalle {
+  readonly id: string;
+  readonly titulo: string;
+  readonly texto: string;
+  readonly pendiente?: boolean;
+}
+
+export interface SeccionRecursos {
   readonly id: IconoRecurso;
   readonly titulo: string;
-  readonly descripcion: string;
+  readonly intro: string;
   readonly icono: IconoRecurso;
-  readonly destino: string;
+  readonly items: readonly RecursoDetalle[];
+}
+
+export interface AccesoRecurso {
+  readonly id: IconoRecurso;
+  readonly etiqueta: string;
+  readonly icono: IconoRecurso;
 }
 
 export interface EnlaceSocial {

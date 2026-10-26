@@ -6,7 +6,7 @@ import { FraseConejo } from '../modules/frase/FraseConejo';
 import { HistoriaTarjeta } from '../modules/historia/HistoriaTarjeta';
 import { JuegoTeaser } from '../modules/juego/JuegoTeaser';
 import { GaleriaTeaser } from '../modules/galeria/GaleriaTeaser';
-import { AyudaRecursos } from '../modules/ayuda/AyudaRecursos';
+import { RecursosTeaser } from '../modules/ayuda/RecursosTeaser';
 import styles from './InicioPage.module.css';
 
 export function InicioPage() {
@@ -23,7 +23,7 @@ export function InicioPage() {
         <HistoriaTarjeta />
         <JuegoTeaser />
         <GaleriaTeaser />
-        <AyudaRecursos />
+        <RecursosTeaser />
       </div>
     </div>
   );

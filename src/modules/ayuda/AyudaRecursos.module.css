@@ -1,132 +1,188 @@
-.panel {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 356px;
-  overflow: hidden;
+.recursos {
+  padding: clamp(16px, 2.4vw, 30px);
   background-color: var(--color-cream-100);
   background-image:
     var(--paper-fibers),
     linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 45%);
   border: 1px solid rgba(15, 61, 46, 0.16);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
 }
 
-.huella {
-  display: grid;
-  place-items: center;
-  width: 27px;
-  height: 27px;
-  color: var(--color-mint-300);
-  border-radius: 50%;
-}
-
-.contenido {
+.aviso {
   display: flex;
-  flex: 1 1 auto;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px 14px;
+  color: var(--color-forest-900);
+  background: var(--color-mint-200);
+  border: 1px dashed rgba(15, 61, 46, 0.3);
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.aviso svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--color-forest-700);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 16px);
+  margin-top: clamp(14px, 2vw, 22px);
+}
+
+.seccion {
+  display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 10px;
-  min-height: 0;
+  padding: clamp(16px, 2vw, 24px);
+  background: rgba(251, 248, 239, 0.86);
+  border: 1px solid rgba(15, 61, 46, 0.14);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
 }
 
-.lista {
-  display: grid;
-  gap: 5px;
+.ancha {
+  grid-column: 1 / -1;
 }
 
-.recurso {
-  display: grid;
-  grid-template-columns: 33px minmax(0, 1fr) auto;
+.cabecera {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: 42px;
-  padding: 5px 8px 5px 6px;
-  border: 1px solid rgba(15, 61, 46, 0.13);
-  border-radius: var(--radius-sm);
-  background: rgba(251, 248, 239, 0.8);
-  transition:
-    transform var(--transition-fast),
-    border-color var(--transition-fast),
-    background-color var(--transition-fast);
-}
-
-.recurso:hover {
-  transform: translateX(2px);
-  border-color: rgba(15, 61, 46, 0.32);
-  background: var(--color-cream-50);
+  gap: 10px;
 }
 
 .icono {
   display: grid;
   place-items: center;
-  width: 31px;
-  height: 31px;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
   color: var(--color-mint-300);
   background: var(--color-forest-900);
   border-radius: 50%;
 }
 
-.texto {
-  display: grid;
-  gap: 1px;
-  min-width: 0;
-}
-
-.texto strong {
+.cabecera h2 {
   color: var(--color-forest-900);
-  font-size: 0.67rem;
-  font-weight: 800;
+  font-size: clamp(1.4rem, 2.1vw, 1.85rem);
+  line-height: 1.05;
 }
 
-.texto small {
-  overflow: hidden;
-  color: var(--color-ink-muted);
-  font-size: 0.54rem;
-  line-height: 1.2;
-  text-overflow: ellipsis;
+.intro {
+  color: var(--color-ink-soft);
+  font-size: clamp(0.86rem, 1vw, 0.94rem);
+  line-height: 1.55;
+}
+
+.items {
+  display: grid;
+  gap: 8px;
+}
+
+.ancha .items {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+
+.item {
+  padding: 11px 13px;
+  background: var(--color-cream-100);
+  border: 1px solid rgba(15, 61, 46, 0.12);
+  border-radius: var(--radius-md);
+}
+
+.itemCabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.item h3 {
+  color: var(--color-forest-900);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.item p {
+  margin-top: 3px;
+  color: var(--color-ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.pendiente {
+  background: var(--color-cream-200);
+  border-style: dashed;
+}
+
+.badge {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  color: #8a4a10;
+  background: rgba(242, 140, 40, 0.18);
+  border-radius: var(--radius-pill);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.flecha {
-  color: var(--color-forest-500, #3a8066);
-}
-
 .compartir {
-  display: grid;
-  gap: 6px;
-  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: clamp(14px, 2vw, 22px);
+  padding: clamp(18px, 2.6vw, 30px);
+  color: var(--color-cream-50);
+  background:
+    radial-gradient(circle at 84% 16%, rgba(127, 217, 154, 0.16), transparent 46%),
+    var(--color-forest-900);
+  border: 1px solid rgba(8, 37, 28, 0.24);
+  border-radius: var(--radius-lg);
   scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
-.compartir h3 {
-  color: var(--color-forest-900);
-  font-family: var(--font-ui);
-  font-size: 0.7rem;
-  font-weight: 800;
+.compartir h2 {
+  color: var(--color-mint-300);
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+}
+
+.compartir p {
+  color: rgba(244, 239, 224, 0.82);
+  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  line-height: 1.55;
 }
 
 .redes {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 4px;
 }
 
 .red {
   display: grid;
   place-items: center;
-  width: 29px;
-  height: 29px;
-  border-radius: 50%;
+  width: 42px;
+  height: 42px;
   color: var(--color-white);
+  border-radius: 50%;
   transition:
     transform var(--transition-fast),
     filter var(--transition-fast);
 }
 
 .red:hover {
-  transform: translateY(-2px) scale(1.04);
+  transform: translateY(-2px) scale(1.05);
   filter: brightness(1.08);
 }
 
@@ -151,51 +207,30 @@
 }
 
 .nota {
-  color: var(--color-forest-700);
-  font-size: clamp(0.9rem, 1vw, 1.1rem);
-  line-height: 0.95;
-  text-align: center;
-  transform: rotate(-2deg);
+  margin-top: 4px;
+  color: var(--color-mint-200);
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1;
+  transform: rotate(-1.4deg);
 }
 
-@media (max-width: 1279px) {
-  .redes {
-    gap: 8px;
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .red {
-    width: 33px;
-    height: 33px;
-  }
-
-  .texto strong {
-    font-size: 0.73rem;
-  }
-
-  .texto small {
-    font-size: 0.59rem;
+  .ancha {
+    grid-column: auto;
   }
 }
 
 @media (max-width: 760px) {
-  .panel {
-    min-height: 0;
-  }
-
-  .recurso {
-    min-height: 48px;
-  }
-
-  .texto strong {
-    font-size: 0.78rem;
-  }
-
-  .texto small {
-    font-size: 0.64rem;
+  .ancha .items {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .red {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
 }

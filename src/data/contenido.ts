@@ -33,13 +33,13 @@ export const navegacion: readonly EnlaceNavegacion[] = [
     destino: '/#tipos-maltrato',
     icono: 'tipos',
   },
-  { id: 'ayuda', etiqueta: 'Ayuda', destino: '/#ayuda', icono: 'ayuda' },
+  { id: 'ayuda', etiqueta: 'Ayuda', destino: '/ayuda', icono: 'ayuda' },
   { id: 'galeria', etiqueta: 'Galería', destino: '/galeria', icono: 'galeria' },
   { id: 'juego', etiqueta: 'Juego', destino: '/juego', icono: 'juego' },
   {
     id: 'recursos',
     etiqueta: 'Recursos',
-    destino: '/#recursos',
+    destino: '/recursos',
     icono: 'recursos',
   },
 ] as const;
@@ -110,13 +110,13 @@ export const indiceBusqueda: readonly IndiceBusqueda[] = [
   {
     etiqueta: 'Ayuda y recursos',
     descripcion: 'Adopta, denuncia y aprende',
-    destino: '/#ayuda',
+    destino: '/recursos',
     claves: ['ayuda', 'adopta', 'denuncia', 'organizaciones', 'consejos'],
   },
   {
     etiqueta: 'Comparte esta revista',
     descripcion: 'Redes sociales',
-    destino: '/#recursos',
+    destino: '/recursos#compartir',
     claves: ['comparte', 'redes', 'facebook', 'instagram', 'tiktok'],
   },
 ] as const;
@@ -154,7 +154,7 @@ export const heroe = {
     {
       id: 'acceso-ayuda',
       etiqueta: 'Ayuda',
-      destino: '/#ayuda',
+      destino: '/ayuda',
       icono: 'ayuda',
     },
     {
@@ -290,16 +290,6 @@ export const juegoContenido = {
   },
 } as const;
 
-export const ayudaContenido = {
-  id: 'ayuda',
-  titulo: 'Ayuda y recursos',
-  subtitulo: 'Hay muchas formas de tender una pata.',
-  compartir: 'Comparte esta revista',
-  nota: 'Juntos podemos hacer la diferencia',
-  idRecursos: 'recursos',
-  ariaRedes: 'Comparte esta revista en redes sociales',
-} as const;
-
 export const footerContenido = {
   cita: 'Pequeñas acciones, grandes cambios',
   sello: '¡Los animales también importan! ♡',
@@ -309,6 +299,7 @@ export const footerContenido = {
     { etiqueta: 'Estadísticas', destino: '/estadisticas' },
     { etiqueta: 'Galería', destino: '/galeria' },
     { etiqueta: 'Juego', destino: '/juego' },
+    { etiqueta: 'Recursos', destino: '/recursos' },
   ] satisfies readonly EnlaceFooter[],
   copyright: '© 2026 Huellas de Esperanza. Hecho con empatía.',
   ariaEnlaces: 'Enlaces del pie de página',
