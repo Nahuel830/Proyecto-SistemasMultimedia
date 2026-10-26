@@ -1,5 +1,15 @@
 import { imagenes } from './imagenes';
-import type { GaleriaItem } from './types';
+import type { CategoriaGaleriaItem, GaleriaItem } from './types';
+
+export const galeriaCategorias: readonly CategoriaGaleriaItem[] = [
+  { id: 'todas', etiqueta: 'Todos' },
+  { id: 'perros', etiqueta: 'Perros' },
+  { id: 'gatos', etiqueta: 'Gatos' },
+  { id: 'conejos', etiqueta: 'Conejos' },
+  { id: 'granja', etiqueta: 'Animales de granja' },
+  { id: 'aves', etiqueta: 'Aves' },
+  { id: 'otros', etiqueta: 'Otros' },
+] as const;
 
 export const galeriaItems: readonly GaleriaItem[] = [
   {
@@ -7,53 +17,136 @@ export const galeriaItems: readonly GaleriaItem[] = [
     src: imagenes.galeria.perro,
     alt: 'Imagen provisional de un perro de mirada dulce',
     titulo: 'Un amigo fiel',
+    descripcion: 'La confianza de un perro que solo espera compañía.',
+    categoria: 'perros',
   },
   {
     id: 'gato',
     src: imagenes.galeria.gato,
     alt: 'Imagen provisional de un gato curioso',
     titulo: 'Una mirada curiosa',
+    descripcion: 'Los gatos también necesitan un hogar seguro y paciencia.',
+    categoria: 'gatos',
   },
   {
     id: 'conejo',
     src: imagenes.galeria.conejo,
     alt: 'Conejo blanco con camisa y chaleco en un bosque',
     titulo: 'Nuestra voz',
+    descripcion: 'El conejo que nos recuerda por qué alzamos la voz.',
+    categoria: 'conejos',
+  },
+  {
+    id: 'conejo-2',
+    src: imagenes.galeria.conejo2,
+    alt: 'Conejo blanco con mirada serena',
+    titulo: 'Serenidad',
+    descripcion: 'Un conejo tranquilo cuando se siente protegido.',
+    categoria: 'conejos',
   },
   {
     id: 'vaca',
     src: imagenes.galeria.vaca,
     alt: 'Imagen provisional de una vaca en el campo',
     titulo: 'También siente',
+    descripcion: 'Los animales de granja también merecen cuidado y respeto.',
+    categoria: 'granja',
   },
   {
-    id: 'paloma',
-    src: imagenes.galeria.paloma,
-    alt: 'Imagen provisional de una paloma',
-    titulo: 'Libertad',
+    id: 'granja',
+    src: imagenes.galeria.granja,
+    alt: 'Imagen provisional de un paisaje de granja',
+    titulo: 'El campo',
+    descripcion: 'Un entorno seguro también es parte del bienestar animal.',
+    categoria: 'granja',
   },
   {
     id: 'caballo',
     src: imagenes.galeria.caballo,
     alt: 'Imagen provisional de un caballo',
     titulo: 'Fuerza y nobleza',
+    descripcion: 'Los caballos necesitan espacio, agua y cuidados adecuados.',
+    categoria: 'granja',
+  },
+  {
+    id: 'paloma',
+    src: imagenes.galeria.paloma,
+    alt: 'Imagen provisional de una paloma',
+    titulo: 'Libertad',
+    descripcion: 'Las aves urbanas también forman parte de nuestro entorno.',
+    categoria: 'aves',
+  },
+  {
+    id: 'aves',
+    src: imagenes.galeria.aves,
+    alt: 'Imagen provisional de aves en vuelo',
+    titulo: 'Alas que importan',
+    descripcion: 'Observar sin molestar es una forma de respeto.',
+    categoria: 'aves',
   },
   {
     id: 'ojo',
     src: imagenes.galeria.ojo,
     alt: 'Primer plano de una mirada animal',
     titulo: 'Una vida que mira',
+    descripcion: 'Cada mirada cuenta una historia que merece ser escuchada.',
+    categoria: 'otros',
   },
   {
     id: 'perro-2',
     src: imagenes.galeria.perro2,
     alt: 'Imagen provisional de otro perro',
     titulo: 'Segunda oportunidad',
+    descripcion: 'La adopción cambia el destino de muchos animales.',
+    categoria: 'perros',
+  },
+  {
+    id: 'perro-abandono',
+    src: imagenes.galeria.perroAbandono,
+    alt: 'Imagen provisional de un perro en situación de abandono',
+    titulo: 'No lo dejes atrás',
+    descripcion: 'El abandono es una forma de maltrato que podemos prevenir.',
+    categoria: 'perros',
   },
   {
     id: 'gato-2',
     src: imagenes.galeria.gato2,
     alt: 'Imagen provisional de otro gato',
     titulo: 'Un hogar seguro',
+    descripcion: 'Un lugar cálido y estable hace la diferencia.',
+    categoria: 'gatos',
+  },
+  {
+    id: 'otros',
+    src: imagenes.galeria.otros,
+    alt: 'Imagen provisional de un animal no identificado',
+    titulo: 'Todas las especies',
+    descripcion: 'El respeto por la vida no distingue tamaños ni especies.',
+    categoria: 'otros',
   },
 ] as const;
+
+export const galeriaPagina = {
+  eyebrow: 'Cada vida importa',
+  titulo: 'Galería: Cada vida importa',
+  subtitulo:
+    'Un recorrido por rostros y momentos que nos recuerdan por qué cuidamos a los animales.',
+  frase: 'No son solo animales, son vidas que sienten',
+  gridTitulo: 'Todas las historias',
+  gridTexto:
+    'Filtra por tipo de animal y abre cada foto para ver su pie de foto.',
+  ariaFiltros: 'Filtrar la galería por categoría',
+  ariaGrid: 'Galería de animales',
+  ariaImagen: 'Ampliar imagen de',
+  lightboxTitulo: 'Galería de Huellas de Esperanza',
+  anterior: 'Imagen anterior',
+  siguiente: 'Imagen siguiente',
+  cerrar: 'Cerrar galería',
+  contador: 'de',
+  vacio: 'No hay imágenes en esta categoría.',
+  teaser: {
+    texto: 'Mira sus rostros y descubre las vidas que podemos proteger.',
+    boton: 'Ver galería',
+    aria: 'Ir a la página de la galería completa',
+  },
+} as const;

@@ -78,11 +78,26 @@ export interface PreguntaJuego {
   readonly feedback: string;
 }
 
+export type CategoriaGaleria =
+  | 'perros'
+  | 'gatos'
+  | 'conejos'
+  | 'granja'
+  | 'aves'
+  | 'otros';
+
 export interface GaleriaItem {
   readonly id: string;
   readonly src: string;
   readonly alt: string;
   readonly titulo: string;
+  readonly descripcion: string;
+  readonly categoria: CategoriaGaleria;
+}
+
+export interface CategoriaGaleriaItem {
+  readonly id: 'todas' | CategoriaGaleria;
+  readonly etiqueta: string;
 }
 
 export interface RecursoItem {

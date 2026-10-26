@@ -34,7 +34,7 @@ export const navegacion: readonly EnlaceNavegacion[] = [
     icono: 'tipos',
   },
   { id: 'ayuda', etiqueta: 'Ayuda', destino: '/#ayuda', icono: 'ayuda' },
-  { id: 'galeria', etiqueta: 'Galería', destino: '/#galeria', icono: 'galeria' },
+  { id: 'galeria', etiqueta: 'Galería', destino: '/galeria', icono: 'galeria' },
   { id: 'juego', etiqueta: 'Juego', destino: '/juego', icono: 'juego' },
   {
     id: 'recursos',
@@ -98,7 +98,7 @@ export const indiceBusqueda: readonly IndiceBusqueda[] = [
   {
     etiqueta: 'Galería',
     descripcion: 'Cada vida importa',
-    destino: '/#galeria',
+    destino: '/galeria',
     claves: ['galeria', 'fotos', 'animales', 'vidas', 'imagenes'],
   },
   {
@@ -160,7 +160,7 @@ export const heroe = {
     {
       id: 'acceso-galeria',
       etiqueta: 'Galería',
-      destino: '/#galeria',
+      destino: '/galeria',
       icono: 'galeria',
     },
   ] satisfies readonly AccesoRapido[],
@@ -288,21 +288,6 @@ export const juegoContenido = {
       },
     ],
   },
-} as const;
-
-export const galeriaContenido = {
-  id: 'galeria',
-  titulo: 'Galería: Cada vida importa',
-  cita:
-    'No son solo animales, son vidas que sienten, que aman y que merecen respeto.',
-  boton: 'Ver galería completa',
-  ariaGrid: 'Galería de animales',
-  ariaImagen: 'Ampliar imagen de',
-  lightboxTitulo: 'Galería de Huellas de Esperanza',
-  anterior: 'Imagen anterior',
-  siguiente: 'Imagen siguiente',
-  cerrar: 'Cerrar galería',
-  contador: 'de',
 } as const;
 
 export const ayudaContenido = {

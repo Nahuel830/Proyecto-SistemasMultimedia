@@ -1,147 +1,101 @@
+import { Heart, Image as ImageIcon } from 'lucide-react';
+import { useCallback, useMemo, useState } from 'react';
 import {
-  ChevronLeft,
-  ChevronRight,
-  Heart,
-  Image as ImageIcon,
-} from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { PanelHeader } from '../../components/primitives/PanelHeader';
-import { Button } from '../../components/primitives/Button';
-import { IconButton } from '../../components/primitives/IconButton';
-import { Modal } from '../../components/primitives/Modal';
-import { galeriaContenido } from '../../data/contenido';
-import { galeriaItems } from '../../data/galeria';
+  galeriaCategorias,
+  galeriaItems,
+  galeriaPagina,
+} from '../../data/galeria';
+import type { CategoriaGaleriaItem } from '../../data/types';
+import { GaleriaGrid } from './GaleriaGrid';
+import { Lightbox } from './Lightbox';
 import styles from './Galeria.module.css';
 
+type CategoriaId = CategoriaGaleriaItem['id'];
+
 export function Galeria() {
+  const [categoria, setCategoria] = useState<CategoriaId>('todas');
   const [indice, setIndice] = useState<number | null>(null);
-  const total = galeriaItems.length;
-  const abierto = indice !== null;
-  const itemActual = indice !== null ? galeriaItems[indice] : undefined;
 
-  useEffect(() => {
-    if (!abierto) {
-      return;
-    }
+  const items = useMemo(
+    () =>
+      categoria === 'todas'
+        ? galeriaItems
+        : galeriaItems.filter((item) => item.categoria === categoria),
+    [categoria],
+  );
 
-    const handleTeclas = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowLeft') {
-        setIndice((valor) =>
-          valor === null ? null : (valor - 1 + total) % total,
-        );
-      }
-      if (event.key === 'ArrowRight') {
-        setIndice((valor) => (valor === null ? null : (valor + 1) % total));
-      }
-    };
+  const total = items.length;
 
-    document.addEventListener('keydown', handleTeclas);
-    return () => document.removeEventListener('keydown', handleTeclas);
-  }, [abierto, total]);
+  const cerrar = useCallback(() => setIndice(null), []);
 
-  const anterior = () => {
+  const anterior = useCallback(() => {
     setIndice((valor) => (valor === null ? null : (valor - 1 + total) % total));
-  };
+  }, [total]);
 
-  const siguiente = () => {
+  const siguiente = useCallback(() => {
     setIndice((valor) => (valor === null ? null : (valor + 1) % total));
+  }, [total]);
+
+  const cambiarCategoria = (id: CategoriaId) => {
+    setCategoria(id);
+    setIndice(null);
   };
 
   return (
     <section
-      id={galeriaContenido.id}
-      className={`${styles.panel} animar-entrada animar-retraso-2`}
-      aria-labelledby="titulo-galeria"
+      className={`${styles.galeria} animar-entrada`}
+      aria-labelledby="galeria-grid-titulo"
     >
-      <PanelHeader
-        icon={<ImageIcon size={19} />}
-        title={galeriaContenido.titulo}
-        titleId="titulo-galeria"
-      />
-
-      <div className={styles.contenido}>
-        <div className={styles.cuerpo}>
-          <ul className={styles.grid} aria-label={galeriaContenido.ariaGrid}>
-            {galeriaItems.map((item, itemIndice) => (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  className={styles.miniatura}
-                  onClick={() => setIndice(itemIndice)}
-                  aria-label={`${galeriaContenido.ariaImagen} ${item.titulo}`}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          <div className={styles.lateral}>
-            <p className={`${styles.cita} manuscrito`}>
-              “{galeriaContenido.cita}”
-            </p>
-            <Heart size={17} aria-hidden="true" className={styles.corazon} />
-          </div>
+      <header className={styles.cabecera}>
+        <span className={styles.icono} aria-hidden="true">
+          <ImageIcon size={22} />
+        </span>
+        <div>
+          <h2 id="galeria-grid-titulo">{galeriaPagina.gridTitulo}</h2>
+          <p>{galeriaPagina.gridTexto}</p>
         </div>
+      </header>
 
-        <Button
-          variant="primary"
-          size="sm"
-          className={styles.botonGaleria}
-          icon={<ImageIcon size={14} aria-hidden="true" />}
-          onClick={() => setIndice(0)}
-        >
-          {galeriaContenido.boton}
-        </Button>
+      <div
+        className={styles.filtros}
+        role="group"
+        aria-label={galeriaPagina.ariaFiltros}
+      >
+        {galeriaCategorias.map((opcion) => (
+          <button
+            key={opcion.id}
+            type="button"
+            className={`${styles.filtro} ${
+              categoria === opcion.id ? styles.activo : ''
+            }`}
+            aria-pressed={categoria === opcion.id}
+            onClick={() => cambiarCategoria(opcion.id)}
+          >
+            {opcion.etiqueta}
+          </button>
+        ))}
       </div>
 
-      <Modal
-        open={abierto}
-        onClose={() => setIndice(null)}
-        title={galeriaContenido.lightboxTitulo}
-        closeLabel={galeriaContenido.cerrar}
-        className={styles.modal}
-      >
-        {itemActual && indice !== null && (
-          <div className={styles.lightbox}>
-            <div className={styles.visor}>
-              <img
-                src={itemActual.src}
-                alt={itemActual.alt}
-                className={styles.imagenGrande}
-              />
-              <div className={styles.flechas}>
-                <IconButton
-                  label={galeriaContenido.anterior}
-                  variant="soft"
-                  onClick={anterior}
-                >
-                  <ChevronLeft size={22} aria-hidden="true" />
-                </IconButton>
-                <IconButton
-                  label={galeriaContenido.siguiente}
-                  variant="soft"
-                  onClick={siguiente}
-                >
-                  <ChevronRight size={22} aria-hidden="true" />
-                </IconButton>
-              </div>
-            </div>
+      {total > 0 ? (
+        <GaleriaGrid items={items} onAbrir={setIndice} />
+      ) : (
+        <p className={styles.vacio}>{galeriaPagina.vacio}</p>
+      )}
 
-            <div className={styles.pieFoto}>
-              <strong>{itemActual.titulo}</strong>
-              <span aria-live="polite">
-                {indice + 1} {galeriaContenido.contador} {total}
-              </span>
-            </div>
-          </div>
-        )}
-      </Modal>
+      <div className={styles.cierre}>
+        <Heart size={20} aria-hidden="true" className={styles.corazon} />
+        <p className={`${styles.frase} manuscrito`}>
+          “{galeriaPagina.frase}”
+        </p>
+      </div>
+
+      <Lightbox
+        items={items}
+        indice={indice}
+        onCerrar={cerrar}
+        onAnterior={anterior}
+        onSiguiente={siguiente}
+      />
     </section>
   );
 }

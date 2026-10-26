@@ -5,7 +5,7 @@ import { TiposMaltrato } from '../modules/tipos/TiposMaltrato';
 import { FraseConejo } from '../modules/frase/FraseConejo';
 import { HistoriaTarjeta } from '../modules/historia/HistoriaTarjeta';
 import { JuegoTeaser } from '../modules/juego/JuegoTeaser';
-import { Galeria } from '../modules/galeria/Galeria';
+import { GaleriaTeaser } from '../modules/galeria/GaleriaTeaser';
 import { AyudaRecursos } from '../modules/ayuda/AyudaRecursos';
 import styles from './InicioPage.module.css';
 
@@ -22,7 +22,7 @@ export function InicioPage() {
       <div className={styles.inferior}>
         <HistoriaTarjeta />
         <JuegoTeaser />
-        <Galeria />
+        <GaleriaTeaser />
         <AyudaRecursos />
       </div>
     </div>
