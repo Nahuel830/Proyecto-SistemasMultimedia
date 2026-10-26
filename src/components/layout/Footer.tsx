@@ -41,6 +41,7 @@ export function Footer() {
         </nav>
       )}
 
+      <p className={styles.notaDatos}>{footerContenido.notaDatos}</p>
       <p className={styles.copyright}>{footerContenido.copyright}</p>
     </footer>
   );

@@ -87,6 +87,17 @@
   line-height: 1.45;
 }
 
+.avisoDatos {
+  padding: 9px 12px;
+  color: var(--color-forest-800);
+  background: var(--color-cream-200);
+  border: 1px dashed rgba(15, 61, 46, 0.22);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 .graficos {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);

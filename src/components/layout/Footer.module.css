@@ -113,6 +113,14 @@
   color: var(--color-mint-300);
 }
 
+.notaDatos {
+  width: min(100%, var(--container-max));
+  margin: 10px auto 0;
+  color: rgba(244, 239, 224, 0.62);
+  font-size: 0.66rem;
+  text-align: center;
+}
+
 .copyright {
   width: min(100%, var(--container-max));
   margin: 14px auto 0;

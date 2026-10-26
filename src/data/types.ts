@@ -72,7 +72,7 @@ export interface DatoAnimal {
   readonly nombre: string;
   readonly porcentaje: number;
   readonly color: string;
-  readonly imagen: string;
+  readonly imagen?: string;
   readonly alt: string;
   readonly ilustrativo: true;
   readonly fuente: string;

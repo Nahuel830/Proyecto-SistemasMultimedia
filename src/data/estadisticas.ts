@@ -117,7 +117,7 @@ export const datosIlustrativos = {
       porcentaje: 34,
       color: '#0F3D2E',
       imagen: imagenes.animales.perro,
-      alt: 'Imagen provisional de un perro',
+      alt: 'Perro de la galería',
     },
     {
       ...fuenteIlustrativa,
@@ -126,7 +126,7 @@ export const datosIlustrativos = {
       porcentaje: 24,
       color: '#F28C28',
       imagen: imagenes.animales.gato,
-      alt: 'Imagen provisional de un gato',
+      alt: 'Gato de la ficha de negligencia',
     },
     {
       ...fuenteIlustrativa,
@@ -135,7 +135,7 @@ export const datosIlustrativos = {
       porcentaje: 12,
       color: '#7B3FA0',
       imagen: imagenes.animales.conejo,
-      alt: 'Imagen provisional de un conejo',
+      alt: 'Conejo de la galería',
     },
     {
       ...fuenteIlustrativa,
@@ -144,7 +144,7 @@ export const datosIlustrativos = {
       porcentaje: 8,
       color: '#2F6DB5',
       imagen: imagenes.animales.granja,
-      alt: 'Imagen provisional de una vaca',
+      alt: 'Vaca de la galería',
     },
     {
       ...fuenteIlustrativa,
@@ -153,7 +153,7 @@ export const datosIlustrativos = {
       porcentaje: 6,
       color: '#2E8B7A',
       imagen: imagenes.animales.aves,
-      alt: 'Imagen provisional de una paloma',
+      alt: 'Loro de plumaje colorido',
     },
     {
       ...fuenteIlustrativa,
@@ -161,8 +161,7 @@ export const datosIlustrativos = {
       nombre: 'Otros',
       porcentaje: 4,
       color: '#7A7A7A',
-      imagen: imagenes.animales.otros,
-      alt: 'Imagen provisional de una huella de animal',
+      alt: 'Icono de huella animal',
     },
   ] satisfies readonly DatoAnimal[],
 } as const;
@@ -181,6 +180,7 @@ export const estadisticasPagina = {
     'Estos porcentajes no son cifras oficiales de Bolivia. Se mantienen como apoyo visual y están marcados como ilustrativos para no confundirlos con los datos del dossier.',
   notaIlustrativa:
     'Los gráficos de esta sección son ilustrativos. No uses estos porcentajes como datos oficiales.',
+  notaDatosDemo: 'Datos ilustrativos, pendientes de fuente oficial.',
   ariaDona: 'Distribución porcentual ilustrativa de los tipos de maltrato animal',
   ariaAnimales:
     'Gráfico de barras ilustrativo del porcentaje de maltrato según el tipo de animal',

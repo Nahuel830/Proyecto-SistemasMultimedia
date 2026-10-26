@@ -284,6 +284,8 @@ export const juegoContenido = {
 export const footerContenido = {
   cita: 'Pequeñas acciones, grandes cambios',
   sello: '¡Los animales también importan! ♡',
+  notaDatos:
+    'Datos recopilados de fuentes oficiales; pendientes de verificación final.',
   enlaces: [
     { etiqueta: 'Inicio', destino: '/' },
     { etiqueta: 'Mi historia', destino: '/mi-historia' },
@@ -300,7 +302,7 @@ export const footerContenido = {
 
 export const configuracion = {
   modoConejo: 'image' as ModoConejo,
-  mostrarNotaDatosDemo: false,
+  mostrarNotaDatosDemo: true,
   mostrarEnlacesFooter: true,
 } as const;
 

@@ -1,3 +1,4 @@
+import { PawPrint } from 'lucide-react';
 import {
   Bar,
   BarChart,
@@ -86,15 +87,39 @@ function FormaBarra(props: FormaBarraProps) {
           />
         </clipPath>
       </defs>
-      <image
-        href={payload.imagen}
-        x={centro - tamanoImagen / 2}
-        y={yImagen}
-        width={tamanoImagen}
-        height={tamanoImagen}
-        preserveAspectRatio="xMidYMid slice"
-        clipPath={`url(#${clipId})`}
-      />
+      {payload.imagen ? (
+        <image
+          href={payload.imagen}
+          x={centro - tamanoImagen / 2}
+          y={yImagen}
+          width={tamanoImagen}
+          height={tamanoImagen}
+          preserveAspectRatio="xMidYMid slice"
+          clipPath={`url(#${clipId})`}
+        />
+      ) : (
+        <>
+          <rect
+            x={centro - tamanoImagen / 2}
+            y={yImagen}
+            width={tamanoImagen}
+            height={tamanoImagen}
+            rx={7}
+            fill="var(--color-cream-200)"
+            stroke="rgba(15, 61, 46, 0.16)"
+          />
+          <foreignObject
+            x={centro - tamanoImagen / 2}
+            y={yImagen}
+            width={tamanoImagen}
+            height={tamanoImagen}
+          >
+            <div className={styles.iconoBarra}>
+              <PawPrint size={22} aria-hidden="true" />
+            </div>
+          </foreignObject>
+        </>
+      )}
       <rect
         x={x}
         y={y}

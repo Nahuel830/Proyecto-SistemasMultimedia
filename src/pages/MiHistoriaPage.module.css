@@ -4,6 +4,18 @@
   scroll-margin-top: var(--header-height);
 }
 
+.avisoFiccion {
+  margin: 0 0 12px;
+  padding: 9px 12px;
+  color: var(--color-ink-muted);
+  background: var(--color-cream-100);
+  border: 1px dashed rgba(15, 61, 46, 0.18);
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
 .cabecera {
   position: relative;
   overflow: hidden;

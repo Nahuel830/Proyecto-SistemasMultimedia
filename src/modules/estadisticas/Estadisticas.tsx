@@ -2,6 +2,7 @@ import { ArrowRight, PawPrint } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { FuenteDato } from '../../components/primitives/FuenteDato';
 import { iconosCifras } from '../../components/iconos';
+import { configuracion } from '../../data/contenido';
 import {
   cifrasBolivia,
   datosIlustrativos,
@@ -53,6 +54,12 @@ export function Estadisticas() {
           );
         })}
       </ul>
+
+      {configuracion.mostrarNotaDatosDemo && (
+        <p className={styles.avisoDatos} role="note">
+          {estadisticasPagina.notaDatosDemo}
+        </p>
+      )}
 
       <div className={styles.graficos} aria-label={estadisticasPagina.graficosAria}>
         <article className={styles.grafico}>

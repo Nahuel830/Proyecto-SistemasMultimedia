@@ -27,6 +27,10 @@ const retardos = [1, 2, 3] as const;
 export function MiHistoriaPage() {
   return (
     <div className={`${styles.pagina} contenedor`}>
+      <p className={styles.avisoFiccion} role="note">
+        {historiaPagina.avisoFiccion}
+      </p>
+
       <Reveal>
         <header className={styles.cabecera} aria-labelledby="historia-titulo">
           <p className={styles.eyebrow}>{historiaPagina.eyebrow}</p>

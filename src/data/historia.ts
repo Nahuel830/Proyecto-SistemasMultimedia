@@ -6,6 +6,8 @@ export const historiaPagina = {
   subtitulo:
     'La vida de un conejo que aprendió que la ternura también puede cambiarlo todo.',
   frase: 'Hay historias que se cuentan con el corazón.',
+  avisoFiccion:
+    'Relato ficticio: el conejo es un personaje creado para sensibilizar. Los datos reales están en Estadísticas, Tipos de maltrato y Ayuda.',
   introEyebrow: 'La voz del conejo',
   introTitulo: 'Antes de que me llamaran Esperanza',
   introParrafos: [
