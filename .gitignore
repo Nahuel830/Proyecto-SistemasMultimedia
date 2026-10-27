@@ -17,11 +17,23 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-# Video local (no se versiona)
+# Variables de entorno
+.env
+.env.*
+
+# Video local (derechos de autor ajenos)
 public/video/*.mp4
+
+# Archivos de Blender
+*.blend
+*.blend1
+
+# Dossier PDF (solo uso interno)
+Dossier*.pdf

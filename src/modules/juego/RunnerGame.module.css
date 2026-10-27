@@ -1,0 +1,153 @@
+.juego {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f4efdf;
+  border: 1px solid rgba(15, 61, 46, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(15, 61, 46, 0.08);
+}
+
+.cabecera {
+  margin-bottom: 12px;
+}
+
+.titulo {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #0f3d2e;
+}
+
+.subtitulo {
+  margin: 4px 0 0;
+  color: #4a5a52;
+  font-size: 0.95rem;
+}
+
+.escenario {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(#a9d8f0 0%, #d9eef5 55%, #f4efdf 100%);
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+.escenario canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.chip {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(15, 61, 46, 0.82);
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  text-align: center;
+  background: rgba(244, 239, 223, 0.86);
+  cursor: default;
+}
+
+.panelTitulo {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.6rem);
+  color: #0f3d2e;
+}
+
+.texto {
+  margin: 0;
+  max-width: 520px;
+  color: #33423a;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+.detalle {
+  margin: 0;
+  max-width: 520px;
+  color: #8a4b2a;
+  font-size: 0.8rem;
+}
+
+.texto kbd {
+  padding: 1px 6px;
+  font-family: inherit;
+  font-size: 0.85em;
+  background: #fff;
+  border: 1px solid #b9c4bd;
+  border-bottom-width: 2px;
+  border-radius: 6px;
+}
+
+.boton {
+  padding: 10px 26px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: #0f3d2e;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: #14543f;
+}
+
+.boton:focus-visible {
+  outline: 3px solid #7fd99a;
+  outline-offset: 3px;
+}
+
+.visualmenteOculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .juego {
+    padding: 12px;
+  }
+  .escenario {
+    aspect-ratio: 16 / 9;
+  }
+  .chip {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+}
