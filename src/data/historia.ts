@@ -24,6 +24,14 @@ export const audioHistoria = {
   error: 'No se pudo reproducir el audio. Revisa el archivo en public/audio.',
 } as const;
 
+export const qrVideo = {
+  urlVideoYoutube: 'https://youtu.be/b0Zvghc0ro4',
+  qrAlt: 'Código QR que abre el video completo en YouTube',
+  titulo: 'Escanea y mira el video completo',
+  frase: 'No al maltrato: tu voz también importa.',
+  credito: 'Video: The Humane Society of the United States',
+} as const;
+
 export const historiaTarjeta = {
   titulo: 'Mi historia',
   texto: 'Un conejo, una voz y una segunda oportunidad.',

@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   AccesoRapido,
   EnlaceFooter,
   EnlaceNavegacion,
@@ -192,13 +192,6 @@ export const fraseContenido = {
 export const videoContenido = {
   titulo: 'Video: Un mensaje para ti',
   ariaVideo: 'Mensaje de video del conejo',
-  subtitulo: 'Hola, soy tu amigo el conejo...',
-  subtituloDos: 'No me maltrates, no me abandones...',
-  notaQr: 'Escanea el código QR y mira el video completo de mi mensaje.',
-  qrAlt: 'Código QR para ver el mensaje completo del conejo',
-  notaManuscrita: 'Tu voz también importa ♡',
-  duracion: 90,
-  tiempoInicial: '0:00',
   ariaPlay: 'Reproducir mensaje',
   ariaPause: 'Pausar mensaje',
   ariaProgreso: 'Progreso del video',

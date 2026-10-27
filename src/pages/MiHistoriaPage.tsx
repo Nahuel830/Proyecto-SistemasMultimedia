@@ -9,6 +9,7 @@ import {
   cierreHistoria,
   conejoHistoria,
   historiaPagina,
+  qrVideo,
   relatoHistoria,
 } from '../data/historia';
 import { imagenes } from '../data/imagenes';
@@ -60,6 +61,30 @@ export function MiHistoriaPage() {
             <blockquote className={`${styles.cita} manuscrito`}>
               “{historiaPagina.introCita}”
             </blockquote>
+            <figure className={styles.qrTarjeta}>
+              <a
+                href={qrVideo.urlVideoYoutube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.qrEnlace}
+              >
+                <img
+                  src={imagenes.qr}
+                  alt={qrVideo.qrAlt}
+                  width={140}
+                  height={140}
+                  className={styles.qrImagen}
+                  loading="lazy"
+                />
+              </a>
+              <figcaption className={styles.qrInfo}>
+                <strong className={styles.qrTitulo}>{qrVideo.titulo}</strong>
+                <p className={`${styles.qrFrase} manuscrito`}>
+                  {qrVideo.frase}
+                </p>
+                <small className={styles.qrCredito}>{qrVideo.credito}</small>
+              </figcaption>
+            </figure>
             <AudioHistoria />
           </aside>
         </Reveal>

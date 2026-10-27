@@ -24,6 +24,7 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
   const contenedorRef = useRef<HTMLDivElement>(null);
   const [reproduciendo, setReproduciendo] = useState(false);
   const [tiempo, setTiempo] = useState(0);
+  const [duracion, setDuracion] = useState(0);
   const [volumen, setVolumen] = useState(0.8);
   const [silenciado, setSilenciado] = useState(false);
   const [ajustesAbiertos, setAjustesAbiertos] = useState(false);
@@ -56,9 +57,11 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
       return;
     }
 
+    const duracionDemo = duracion > 0 ? duracion : 90;
+
     const intervalo = window.setInterval(() => {
       setTiempo((actual) => {
-        if (actual >= videoContenido.duracion - 1) {
+        if (actual >= duracionDemo - 1) {
           setReproduciendo(false);
           return 0;
         }
@@ -67,7 +70,7 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
     }, 1000);
 
     return () => window.clearInterval(intervalo);
-  }, [reproduciendo, videoDisponible]);
+  }, [reproduciendo, videoDisponible, duracion]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -78,6 +81,8 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
     video.muted = silenciado;
   }, [volumen, silenciado, videoDisponible]);
 
+  const duracionSegura = duracion > 0 ? duracion : 90;
+
   const alternarReproduccion = async () => {
     if (reproduciendo) {
       videoRef.current?.pause();
@@ -85,7 +90,7 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
       return;
     }
 
-    if (tiempo >= videoContenido.duracion) {
+    if (tiempo >= duracionSegura) {
       setTiempo(0);
       if (videoRef.current) {
         videoRef.current.currentTime = 0;
@@ -156,12 +161,18 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
               preload="metadata"
               playsInline
               aria-label={videoContenido.ariaVideo}
+              onLoadedMetadata={(event) => {
+                const d = event.currentTarget.duration;
+                if (Number.isFinite(d)) {
+                  setDuracion(d);
+                }
+              }}
               onTimeUpdate={(event) => {
                 setTiempo(event.currentTarget.currentTime);
               }}
               onEnded={() => {
                 setReproduciendo(false);
-                setTiempo(videoContenido.duracion);
+                setTiempo(duracionSegura);
               }}
               onPlay={() => setReproduciendo(true)}
               onPause={() => setReproduciendo(false)}
@@ -175,11 +186,6 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
           )}
 
           <div className={styles.velo} aria-hidden="true" />
-
-          <div className={styles.subtitulos}>
-            <span>{videoContenido.subtitulo}</span>
-            <span>{videoContenido.subtituloDos}</span>
-          </div>
 
           <button
             type="button"
@@ -218,13 +224,13 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
             </button>
 
             <span className={styles.tiempo} aria-live="off">
-              {formatearTiempo(tiempo)} / {formatearTiempo(videoContenido.duracion)}
+              {formatearTiempo(tiempo)} / {formatearTiempo(duracionSegura)}
             </span>
 
             <input
               type="range"
               min={0}
-              max={videoContenido.duracion}
+              max={duracionSegura}
               step={0.1}
               value={tiempo}
               onChange={(event) => cambiarTiempo(Number(event.target.value))}
@@ -232,9 +238,9 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
               aria-label={videoContenido.ariaProgreso}
               style={{
                 background: `linear-gradient(90deg, var(--color-mint-400) ${
-                  (tiempo / videoContenido.duracion) * 100
+                  (tiempo / duracionSegura) * 100
                 }%, rgba(255,255,255,.25) ${
-                  (tiempo / videoContenido.duracion) * 100
+                  (tiempo / duracionSegura) * 100
                 }%)`,
               }}
             />
@@ -298,21 +304,6 @@ export function VideoMensaje({ className }: VideoMensajeProps) {
               <small>{videoContenido.ajustesNota}</small>
             </div>
           )}
-        </div>
-
-        <div className={styles.qrFila}>
-          <img
-            className={styles.qr}
-            src={imagenes.qr}
-            alt={videoContenido.qrAlt}
-            loading="lazy"
-          />
-          <div className={styles.qrTexto}>
-            <p>{videoContenido.notaQr}</p>
-            <p className={`${styles.manuscrita} manuscrito`}>
-              {videoContenido.notaManuscrita}
-            </p>
-          </div>
         </div>
       </div>
     </section>

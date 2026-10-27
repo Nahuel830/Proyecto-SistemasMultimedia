@@ -1,5 +1,12 @@
 # Decisiones del proyecto
 
+## Video del mensaje y derechos de autor (2026-10-27)
+
+- El video `public/video/mensaje-conejo.mp4` pertenece a **The Humane Society of the United States**. No se redistribuye: el archivo `.mp4` es solo para la exposición local del proyecto universitario.
+- Se añadió `public/video/*.mp4` a `.gitignore` y se ejecutó `git rm --cached` para dejar de versionar el binario sin borrarlo del disco.
+- El QR (`/qr/qr-mensaje.png`) y el enlace de YouTube apuntan al canal oficial de The Humane Society; el espectador ve el video en su plataforma original.
+- El crédito "Video: The Humane Society of the United States" se muestra junto al QR en la tarjeta lateral de Mi historia.
+
 ## Fuentes y estados de verificación (2026-10-26)
 
 - Se reemplazó `verificado: boolean` por `estadoVerificacion` (`verificado`, `fuente-asignada`, `discrepancia`, `sin-verificar`) y `fuentes: []` en todos los datos verificables.
