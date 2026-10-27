@@ -24,7 +24,7 @@ export function Hero({ rabbitMode = configuracion.modoConejo }: HeroProps) {
           variant="heroe"
           alt={heroe.ariaImagen}
           eager
-          autoRotate={false}
+          autoRotate
           animation="idle"
         />
       </div>

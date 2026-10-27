@@ -122,3 +122,9 @@
     font-size: 0.76rem;
   }
 }
+
+.visor3d {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, #1d6a50, var(--color-forest-950));
+}

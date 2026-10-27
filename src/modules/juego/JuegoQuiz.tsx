@@ -15,6 +15,7 @@ import { PanelHeader } from '../../components/primitives/PanelHeader';
 import { RabbitVisual } from '../../components/RabbitVisual';
 import { Button } from '../../components/primitives/Button';
 import { configuracion, juegoContenido } from '../../data/contenido';
+import { imagenes } from '../../data/imagenes';
 import {
   letrasOpciones,
   preguntasJuego,
@@ -260,6 +261,8 @@ export function JuegoQuiz({
                 variant="quiz"
                 alt={juegoContenido.ariaImagen}
                 animation="saludo"
+                model={imagenes.modelos.conejoCorre}
+                autoRotate
               />
             </div>
           </div>
@@ -401,6 +404,8 @@ export function JuegoQuiz({
                   variant="quiz"
                   alt={juegoContenido.ariaImagen}
                   animation="saludo"
+                  model={imagenes.modelos.conejoCorre}
+                autoRotate
                 />
               </div>
             </div>

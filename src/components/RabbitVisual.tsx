@@ -21,6 +21,7 @@ interface RabbitVisualProps {
   readonly eager?: boolean;
   readonly autoRotate?: boolean;
   readonly animation?: string;
+  readonly model?: string;
 }
 
 const fuentes: Record<VarianteConejo, string> = {
@@ -43,6 +44,7 @@ export function RabbitVisual({
   eager = false,
   autoRotate = false,
   animation,
+  model = imagenes.modelo,
 }: RabbitVisualProps) {
   if (mode === '3d') {
     return (
@@ -51,7 +53,7 @@ export function RabbitVisual({
           fallback={<CanvasFallback alt={alt} mostrarAviso={false} />}
         >
           <ModelViewer
-            src={imagenes.modelo}
+            src={model}
             alt={alt}
             autoRotate={autoRotate}
             animation={animation}

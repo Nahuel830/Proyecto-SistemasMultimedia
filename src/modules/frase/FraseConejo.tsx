@@ -25,6 +25,7 @@ export function FraseConejo({ rabbitMode = configuracion.modoConejo }: FraseCone
           variant="panel"
           alt={fraseContenido.ariaImagen}
           animation="idle"
+          autoRotate
         />
       </div>
 

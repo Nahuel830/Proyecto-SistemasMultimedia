@@ -21,6 +21,8 @@ interface ModelViewerProps {
   readonly autoRotate?: boolean;
   readonly controls?: boolean;
   readonly animated?: boolean;
+  readonly zoom?: boolean;
+  readonly rotateSpeed?: number;
 }
 
 interface ModeloProps extends Pick<ModelViewerProps, 'src' | 'animation' | 'animated'> {
@@ -143,6 +145,8 @@ export function ModelViewer({
   autoRotate = false,
   controls = true,
   animated = true,
+  zoom = true,
+  rotateSpeed = 2.2,
 }: ModelViewerProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
@@ -277,13 +281,13 @@ export function ModelViewer({
             <OrbitControls
               makeDefault
               enablePan={false}
-              enableZoom
+              enableZoom={zoom}
               minDistance={2.4}
               maxDistance={6.5}
               minPolarAngle={Math.PI / 4}
               maxPolarAngle={Math.PI / 1.8}
               autoRotate={autoRotate && !reducedMotion}
-              autoRotateSpeed={0.65}
+              autoRotateSpeed={rotateSpeed}
             />
           )}
         </Canvas>

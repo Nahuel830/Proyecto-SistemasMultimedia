@@ -139,10 +139,10 @@ export function MiHistoriaPage() {
           >
             <ModelViewer
               mode={configuracion.modoConejo}
-              src={imagenes.modelo}
+              src={imagenes.modelos.conejoSentado}
               alt={conejoHistoria.ariaVisual}
               animation="idle"
-              controls={false}
+              autoRotate
             />
           </Suspense>
         </Reveal>
