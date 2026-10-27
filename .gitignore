@@ -28,8 +28,6 @@ Thumbs.db
 .env
 .env.*
 
-# Video local (derechos de autor ajenos)
-public/video/*.mp4
 
 # Archivos de Blender
 *.blend

@@ -197,14 +197,17 @@
     bottom: auto;
     top: 44px;
   }
+
   .ayuda {
     right: 12px;
     top: 10px;
   }
+
   .portada {
     aspect-ratio: 4 / 5;
     min-height: 460px;
   }
+
   .pie {
     right: 16px;
   }
