@@ -64,11 +64,12 @@ export const imagenes = {
   qr: '/qr/qr-mensaje.png',
   audio: '/audio/mensaje-conejo.wav',
   videoSrc: '/video/mensaje-conejo.mp4',
-  modelo: '/models/conejo.glb',
+  modelo: '/models/conejosentado.glb',
   modelos: {
-    conejo: '/models/conejo.glb',
+    conejo: '/models/conejosentado.glb',
     conejoSentado: '/models/conejosentado.glb',
     conejoCorre: '/models/conejocorre.glb',
     tigre: '/models/tigre.glb',
+    conejoAsomado: '/models/conejo_asomado.glb',
   },
 } as const;

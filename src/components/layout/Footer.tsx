@@ -5,6 +5,7 @@ import {
   footerContenido,
   marca,
 } from '../../data/contenido';
+import { MusicaFondo } from '../MusicaFondo';
 import styles from './Footer.module.css';
 
 export function Footer() {
@@ -43,6 +44,8 @@ export function Footer() {
 
       <p className={styles.notaDatos}>{footerContenido.notaDatos}</p>
       <p className={styles.copyright}>{footerContenido.copyright}</p>
+
+      <MusicaFondo />
     </footer>
   );
 }

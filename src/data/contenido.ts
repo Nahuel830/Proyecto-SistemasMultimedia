@@ -298,7 +298,7 @@ export const footerContenido = {
 } as const;
 
 export const configuracion = {
-  modoConejo: 'image' as ModoConejo,
+  modoConejo: '3d' as ModoConejo,
   mostrarNotaDatosDemo: true,
   mostrarEnlacesFooter: true,
 } as const;

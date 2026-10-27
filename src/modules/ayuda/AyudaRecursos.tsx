@@ -11,6 +11,7 @@ import {
   refugios,
   seccionesRecursos,
 } from '../../data/recursos';
+import { ConejoAsomado } from './ConejoAsomado';
 import styles from './AyudaRecursos.module.css';
 
 interface AyudaRecursosProps {
@@ -64,6 +65,8 @@ export function AyudaRecursos({
               </li>
             ))}
           </ol>
+
+          <ConejoAsomado />
         </article>
 
         <article className={styles.seccion} aria-labelledby="recursos-lineas">
